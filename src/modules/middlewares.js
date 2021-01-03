@@ -3,7 +3,7 @@ const db = require("../db");
 
 let isLoggedIn = (req, res, next) => {
     if(!req.session.user) {
-        return res.redirect("/");
+        return res.json({error: "You must be logged in."});
     }else {
         return next();
     }

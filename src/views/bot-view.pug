@@ -101,19 +101,29 @@ block content
             },
             mounted() {
                 this.fetchBot();
+                this.fetchComments();
+                this.fetchStats();
             },
             methods: {
                 fetchBot() {
-                    axios.get("/bot/#{bot.bot_id}/json").then(res => {
-                        this.bot = res.data.bot
+                    axios.get("/api/bot/#{bot.bot_id}").then(res => {
+                        this.bot = res.data.bot;
+                    });
+                },
+                fetchComments() {
+                    axios.get("/api/bot/comments/#{bot.bot_id}").then(res => {
                         this.comments = res.data.comments;
+                    });
+                },
+                fetchStats() {
+                    axios.get("/api/bot/stats/#{bot.bot_id}").then(res => {
                         this.stats = res.data.stats;
                     });
                 },
                 postComment() {
-                    axios.post("/bot/#{bot.bot_id}/comment", {content: this.comment_content}).then(res => {
+                    axios.post("/api/bot/comments/#{bot.bot_id}", {content: this.comment_content}).then(res => {
                         if(res.data.msg) {
-                            this.fetchBot();
+                            this.fetchComments();
                             this.comment_content = "";
                             this.lastError = "";
                         }else {
