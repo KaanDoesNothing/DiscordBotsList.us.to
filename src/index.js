@@ -49,6 +49,7 @@ app.use((req, res, next) => {
 app.use("/auth", require("./routes/auth"));
 app.use("/admin", isLoggedIn, isModerator, require("./routes/admin"));
 app.use("/bot", require("./routes/bot"));
+app.use("/api", require("./routes/api/index"));
 
 app.get("/", async (req, res) => {
     let search = req.query.search;
