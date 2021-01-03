@@ -48,6 +48,9 @@ block content
                     label(class="card-header-title") Comments
                 div(class="card-content")
 
+                    div(class="field")
+                        div(class="notification is-danger" v-if="lastError") {{lastError}}
+                    
                     div(class="field has-addons" v-if="_isLoggedIn")
                         div(class="control is-expanded")
                             input(class="input" type="text" placeholder="Message content here." v-model="comment_content")
@@ -73,7 +76,8 @@ block content
                     bot: {},
                     hasPermissions: #{hasPermissions},
                     comments: [],
-                    comment_content: ""
+                    comment_content: "",
+                    lastError: ""
                 }
             },
             mounted() {
@@ -88,9 +92,13 @@ block content
                 },
                 postComment() {
                     axios.post("/bot/#{bot.bot_id}/comment", {content: this.comment_content}).then(res => {
-                        this.fetchBot();
-                        //- if(res.msg) this.fetchBot();
-                        this.comment_content = "";
+                        if(res.data.msg) {
+                            this.fetchBot();
+                            this.comment_content = "";
+                            this.lastError = "";
+                        }else {
+                            this.lastError = res.data.error;
+                        }
                     });
                 }
             }
