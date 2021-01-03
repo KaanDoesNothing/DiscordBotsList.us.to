@@ -2,6 +2,7 @@ nav(class="navbar has-shadow", role="navigation")
     div(class="navbar-brand")
         a(class="navbar-item", href="/") 
             | Discord Bots
+
         //- div(class="field")
         //-         input(id="themeSwitch" type="checkbox" name="themeSwitch" class="switch" checked="checked")
         
@@ -12,6 +13,8 @@ nav(class="navbar has-shadow", role="navigation")
 
     div(class="navbar-menu", id="navbarContent")
         div(class="navbar-end")
+            a(class="navbar-item", href=`/switch_theme`) #{darkMode ? "Light Theme" : "Dark Theme"}
+
             if session
                 if session.permissions.moderator
                     a(class="navbar-item", href=`/admin`) Admin

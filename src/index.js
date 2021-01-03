@@ -76,8 +76,8 @@ app.get("/bots/json", async (req, res) => {
     return res.json({bots});
 });
 
-app.get("/enabledarkmode", async (req, res) => {
-    req.session.darkMode = true;
+app.get("/switch_theme", async (req, res) => {
+    req.session.darkMode = !req.session.darkMode;
     req.session.save();
     res.redirect("/");
 });
