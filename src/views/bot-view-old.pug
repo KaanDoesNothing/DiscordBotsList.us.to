@@ -22,23 +22,34 @@ block content
                     a(class="tag is-success" v-if="bot.verified") Yes
                     a(class="tag is-danger" v-if="!bot.verified") No
 
-                div(class="control")
+                div(class="control" v-if="!editing")
                     br
                     span(class="tag") Prefix
                     a(class="tag is-info") {{bot.prefix}}
+
+                div(class="control" v-if="editing")
+                    label Prefix
+                    input(class="input editInput" v-model="bot.prefix")
 
                 div(class="control")
                     br
                     div(class="buttons is-centered")
                         a(class="button is-dark" :href="bot.invite_link") Invite
                         a(class="button is-dark" :href="bot.website_link") Website
-                        a(class="button is-dark" v-if="hasPermissions" :href="`/bot/${bot.bot_id}/edit`") Edit
+                        a(class="button is-dark" @click="editing = true" v-if="hasPermissions && !editing") Edit
+                        a(class="button is-dark" @click="cancel" v-if="hasPermissions && editing") Cancel
+                        a(class="button is-dark" @click="updatePrefix" v-if="hasPermissions && editing") Save
 
                 br
                 
                 div(class="message has-text-centered")
                     div(class="message-header text-center") Description
-                    div(class="message-body") {{bot.description}}
+                    div(class="message-body" v-if="!editing") {{bot.description}}
+                    div(class="message-body" v-if="editing")
+                        label Short Description:
+                            textarea(class="textarea has-text-centered" v-model="bot.short_description")
+                        label Description:
+                        textarea(class="textarea has-text-centered" v-model="bot.description")
                     
     script.
         new Vue({
@@ -46,7 +57,8 @@ block content
             data() {
                 return {
                     bot: {},
-                    hasPermissions: #{hasPermissions}
+                    hasPermissions: #{hasPermissions},
+                    editing: false
                 }
             },
             mounted() {
@@ -55,6 +67,18 @@ block content
             methods: {
                 fetchBot() {
                     axios.get("/bot/#{bot.bot_id}/json").then(res => this.bot = res.data.bot);
+                },
+                updatePrefix() {
+                    axios.post("/bot/#{bot.bot_id}/update/prefix", {prefix: this.bot.prefix}).then((res) => {
+                        if(res.data.msg) {
+                            this.fetchBot();
+                            this.editing = false;
+                        }
+                    });
+                },
+                cancel() {
+                    this.fetchBot();
+                    this.editing = false;
                 }
             }
         });
