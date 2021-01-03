@@ -11,8 +11,8 @@ block content
         div(class="columns is-multiline is-mobile is-centered")
             each bot in bots
                 div(class="card", style="margin: 1%;")
-                    div(class="card-image")
-                        img(src=bot.user.displayAvatarURL({size: 256}) alt="Bot Avatar")
+                    div(class="card-image text-center")
+                        img(src=bot.user.displayAvatarURL({size: 256}) alt="Bot Avatar" width="256" height="256" style="padding: 5%;")
 
                     div(class="card-content")
                         div(class="media-content")
