@@ -1,0 +1,86 @@
+extends layouts/main
+
+block content
+    div(class="container" id="mainBotView")
+        div(class="card is-shadow")
+            div(class="card-image has-text-centered")
+                img(class="is-rounded" id="avatar" src=bot.user.displayAvatarURL({size: 4096}) alt="Bot Avatar")
+
+            div(class="card-content has-text-centered")
+                label(class="title") {{bot.user.username}}
+
+                br
+                
+                div(class="control")
+                    br
+                    span(class="tag") Owner
+                    a(class="tag is-info") {{bot.owner.tag}}
+
+                div(class="control")
+                    br
+                    span(class="tag") Verified
+                    a(class="tag is-success" v-if="bot.verified") Yes
+                    a(class="tag is-danger" v-if="!bot.verified") No
+
+                div(class="control" v-if="!editing")
+                    br
+                    span(class="tag") Prefix
+                    a(class="tag is-info") {{bot.prefix}}
+
+                div(class="control" v-if="editing")
+                    label Prefix
+                    input(class="input editInput" v-model="bot.prefix")
+
+                div(class="control")
+                    br
+                    div(class="buttons is-centered")
+                        a(class="button is-dark" :href="bot.invite_link") Invite
+                        a(class="button is-dark" :href="bot.website_link") Website
+                        a(class="button is-dark" @click="editing = true" v-if="hasPermissions && !editing") Edit
+                        a(class="button is-dark" @click="cancel" v-if="hasPermissions && editing") Cancel
+                        a(class="button is-dark" @click="updatePrefix" v-if="hasPermissions && editing") Save
+
+                br
+                
+                div(class="message has-text-centered")
+                    div(class="message-header text-center") Description
+                    div(class="message-body" v-if="!editing") {{bot.description}}
+                    div(class="message-body" v-if="editing")
+                        label Short Description:
+                            textarea(class="textarea has-text-centered" v-model="bot.short_description")
+                        label Description:
+                        textarea(class="textarea has-text-centered" v-model="bot.description")
+                    
+    script.
+        new Vue({
+            el: "#mainBotView",
+            data() {
+                return {
+                    bot: {},
+                    hasPermissions: #{hasPermissions},
+                    editing: false
+                }
+            },
+            mounted() {
+                this.fetchBot();
+            },
+            methods: {
+                fetchBot() {
+                    axios.get("/bot/#{bot.bot_id}/json").then(res => this.bot = res.data.bot);
+                },
+                updatePrefix() {
+                    axios.post("/bot/#{bot.bot_id}/update/prefix", {prefix: this.bot.prefix}).then((res) => {
+                        if(res.data.msg) {
+                            this.fetchBot();
+                            this.editing = false;
+                        }
+                    });
+                },
+                cancel() {
+                    this.fetchBot();
+                    this.editing = false;
+                }
+            }
+        });
+
+    link(rel="stylesheet" type="text/css" href="/static/css/bot-view.css")

@@ -1,0 +1,5 @@
+node_modules/
+package-lock.json
+src/public/app
+src/public/bundle/.cache
+src/config.js

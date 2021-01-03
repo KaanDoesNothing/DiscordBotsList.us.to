@@ -1,0 +1,29 @@
+extends layouts/main
+
+block content
+    div(class="botColumns")
+        //- div(class="field is-grouped is-centered")
+        //-     div(class="control")
+        //-         input(class="input is-expanded", type="text", value=`${search || ''}`)
+        //-     div(class="control")
+        //-         a(class="button is-info" id="searchButton") Search
+
+        div(class="columns is-multiline is-mobile is-centered")
+            each bot in bots
+                div(class="card", style="margin: 1%;")
+                    div(class="card-image")
+                        img(src=bot.user.displayAvatarURL({size: 256}) alt="Bot Avatar")
+
+                    div(class="card-content")
+                        div(class="media-content")
+                            p(class="title is-4") #{bot.user.username}
+                        
+                        label(class="content") #{bot.short_description}
+
+                        footer(class="card-footer")
+                            a(href=`/bot/${bot.bot_id}`, class="card-footer-item") View
+                            a(href=bot.invite_link, class="card-footer-item") Invite
+
+    script(src="/static/js/home.js")
+
+    link(rel="stylesheet" type="text/css" href="/static/css/home.css")

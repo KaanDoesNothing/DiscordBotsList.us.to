@@ -1,0 +1,27 @@
+/* body {
+    background: #000000;
+} */
+
+html {
+    background: #121212 !important;
+}
+
+.navbar {
+    background: #121212;
+}
+
+.navbar .navbar-item {
+    color: #FFFFFF !important;
+}
+
+.navbar .navbar-item a {
+    text-decoration: none !important;
+}
+
+.card {
+    background: #2F2F2F;
+}
+
+h1, label, p{
+    color: #FFFFFF !important;
+}
