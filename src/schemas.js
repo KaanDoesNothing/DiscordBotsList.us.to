@@ -25,10 +25,12 @@ const commentSchema = Joi.object({
 });
 
 const botDataSchema = Joi.object({
+    api_key: Joi.string().required(),
     bot_id: user_id,
     guilds: Joi.number(),
     channels: Joi.number(),
-    users: Joi.number()
+    users: Joi.number(),
+    date: Joi.number().required()
 });
 
 module.exports = {

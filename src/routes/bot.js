@@ -6,7 +6,7 @@ const app = express.Router();
 const db = require("../db");
 const {fixBot, fixUser, isValidUserID} = require("../utils");
 const {isAllowedToEditBot, isLoggedIn} = require("../modules/middlewares")
-const {commentSchema} = require("../schemas");
+const {commentSchema, botDataSchema} = require("../schemas");
 
 app.get("/:id", async (req, res) => {
     const bot = await db.get("bots").findOne({bot_id: req.params.id});
@@ -33,7 +33,11 @@ app.get("/:id/json", async (req, res) => {
         return comment;
     }));
 
-    return res.json({bot: fixedBot, comments: fixedComments});
+    let stats = await db.get("botsData").findOne({bot_id: bot.bot_id}, {sort: {date: -1}});
+
+    delete stats._id;
+
+    return res.json({bot: fixedBot, comments: fixedComments, stats});
 });
 
 app.get("/:id/delete", isAllowedToEditBot, async (req, res) => {
@@ -71,6 +75,28 @@ app.get("/:id/apikey", isLoggedIn, isAllowedToEditBot, async (req, res) => {
     }
 
     return res.json({api_key: apiKey});
+});
+
+app.post("/:id/stats", async (req, res) => {
+    let finalBody = {...req.body, bot_id: req.params.id, date: Date.now()};
+    
+    const isValid = botDataSchema.validate(finalBody);
+    
+    if(isValid.error) {
+        return res.json({error: isValid.error.details[0].message});
+    }
+
+    delete finalBody.api_key;
+
+    const bot = await db.get("bots").findOne({bot_id: req.params.id});
+
+    if(!bot) {
+        return res.json({error: "Invalid bot id."});
+    }
+
+    db.get("botsData").insert(finalBody).then(() => {
+        return res.json({msg: "Bot stats have been updated."});
+    });
 });
 
 app.post("/:id/update/prefix", isAllowedToEditBot, async (req, res) => {
