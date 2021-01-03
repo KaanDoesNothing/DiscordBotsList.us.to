@@ -35,7 +35,7 @@ app.get("/:id/json", async (req, res) => {
 
     let stats = await db.get("botsData").findOne({bot_id: bot.bot_id}, {sort: {date: -1}});
 
-    delete stats._id;
+    if(stats) delete stats._id;
 
     return res.json({bot: fixedBot, comments: fixedComments, stats});
 });

@@ -27,6 +27,21 @@ block content
                     span(class="tag") Prefix
                     a(class="tag is-info") {{bot.prefix}}
 
+                <template v-if="stats">
+                    div(class="control" v-if="stats.guilds")
+                        br
+                        span(class="tag") Guilds
+                        a(class="tag is-info") {{stats.guilds}}
+                    div(class="control" v-if="stats.channels")
+                        br
+                        span(class="tag") Channels
+                        a(class="tag is-info") {{stats.channels}}
+                    div(class="control" v-if="stats.users")
+                        br
+                        span(class="tag") users
+                        a(class="tag is-info") {{stats.users}}
+                </template>
+
                 div(class="control")
                     br
                     div(class="buttons is-centered")
@@ -80,7 +95,8 @@ block content
                     hasPermissions: #{hasPermissions},
                     comments: [],
                     comment_content: "",
-                    lastError: ""
+                    lastError: "",
+                    stats: {}
                 }
             },
             mounted() {
@@ -91,6 +107,7 @@ block content
                     axios.get("/bot/#{bot.bot_id}/json").then(res => {
                         this.bot = res.data.bot
                         this.comments = res.data.comments;
+                        this.stats = res.data.stats;
                     });
                 },
                 postComment() {
