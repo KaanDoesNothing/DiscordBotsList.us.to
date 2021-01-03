@@ -39,14 +39,41 @@ block content
                 div(class="message has-text-centered")
                     div(class="message-header text-center") Description
                     div(class="message-body") {{bot.description}}
-                    
+        
+        br
+
+        div(class="container")
+            div(class="card is-shadow")
+                div(class="card-header")
+                    label(class="card-header-title") Comments
+                div(class="card-content")
+
+                    div(class="field has-addons" v-if="_isLoggedIn")
+                        div(class="control is-expanded")
+                            input(class="input" type="text" placeholder="Message content here." v-model="comment_content")
+                        div(class="control")
+                            a(class="button is-info" @click="postComment") Comment
+
+                    div(class="media" v-for="comment in comments")
+                        div(class="media-left")
+                            label(class="image is-64x64")
+                                img(class="is-rounded" :src="comment.author.displayAvatarURL")
+                        div(class="media-content")
+                            div(class="content")
+                                strong {{comment.author.username}} 
+                                label {{comment.readableCommentDate}}
+                                br
+                                label {{comment.content}}
+
     script.
         new Vue({
             el: "#mainBotView",
             data() {
                 return {
                     bot: {},
-                    hasPermissions: #{hasPermissions}
+                    hasPermissions: #{hasPermissions},
+                    comments: [],
+                    comment_content: ""
                 }
             },
             mounted() {
@@ -54,7 +81,17 @@ block content
             },
             methods: {
                 fetchBot() {
-                    axios.get("/bot/#{bot.bot_id}/json").then(res => this.bot = res.data.bot);
+                    axios.get("/bot/#{bot.bot_id}/json").then(res => {
+                        this.bot = res.data.bot
+                        this.comments = res.data.comments;
+                    });
+                },
+                postComment() {
+                    axios.post("/bot/#{bot.bot_id}/comment", {content: this.comment_content}).then(res => {
+                        this.fetchBot();
+                        //- if(res.msg) this.fetchBot();
+                        this.comment_content = "";
+                    });
                 }
             }
         });

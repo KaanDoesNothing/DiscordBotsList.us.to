@@ -17,6 +17,14 @@ html(lang="en")
         link(rel="stylesheet", type="text/css", href="https://cdn.jsdelivr.net/npm/bulma-switch@2.0.0/dist/css/bulma-switch.min.css")
         script(src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js")
+
+        script.
+            window._isLoggedIn = #{session ? "true" : "false"}
+        
+        if session
+            script.
+                window._user_id = "#{session._id}";
+
     body(class="body")
         include ../partials/navbar
 

@@ -8,6 +8,10 @@ module.exports.fixBot = async (bot) => {
     return bot;
 }
 
+module.exports.fixUser = async (user_id) => {
+    return client.users.cache.get(user_id) || await client.users.fetch(user_id);
+}
+
 module.exports.fixUserPermissions = (id) => {
     let member = client.guilds.cache.get(config.mainGuild).members.cache.get(id);
 
