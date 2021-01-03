@@ -63,10 +63,12 @@ block content
                                 img(class="is-rounded" :src="comment.author.displayAvatarURL")
                         div(class="media-content")
                             div(class="content")
-                                strong {{comment.author.username}} 
+                                a(:href="`/profile/${comment.author_id}`")
+                                    strong {{comment.author.username}} 
                                 label {{comment.readableCommentDate}}
                                 br
                                 label {{comment.content}}
+                                br
 
     script.
         new Vue({

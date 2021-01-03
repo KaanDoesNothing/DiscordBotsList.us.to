@@ -24,7 +24,15 @@ const commentSchema = Joi.object({
     likes: Joi.number().required()
 });
 
+const botDataSchema = Joi.object({
+    bot_id: user_id,
+    guilds: Joi.number(),
+    channels: Joi.number(),
+    users: Joi.number()
+});
+
 module.exports = {
     botSchema,
-    commentSchema
+    commentSchema,
+    botDataSchema
 }

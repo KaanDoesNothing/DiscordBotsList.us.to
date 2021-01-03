@@ -24,8 +24,8 @@ let isAllowedToEditBot = async (req, res, next) => {
 
     let hasPermissions = false;
     
-    if(res.locals.session) {
-        if(finalBot.owner_id === res.locals.session._id) hasPermissions = true;
+    if(res.locals.session && finalBot.owner_id === res.locals.session._id) {
+        hasPermissions = true;
 
         return next();
     }

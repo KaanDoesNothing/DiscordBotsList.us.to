@@ -56,6 +56,23 @@ app.post("/:id/comment", isLoggedIn, async (req, res) => {
     });
 });
 
+app.get("/:id/apikey", isLoggedIn, isAllowedToEditBot, async (req, res) => {
+    const bot = await db.get("bots").findOne({bot_id: req.params.id});
+
+    if(!bot) {
+        return res.json({error: "Invalid bot id."});
+    }
+
+    let apiKey = bot.api_key;
+
+    if(!apiKey) {
+        apiKey = hat();
+        await db.get("bots").findOneAndUpdate({bot_id: req.params.id}, {$set: {api_key: apiKey}});
+    }
+
+    return res.json({api_key: apiKey});
+});
+
 app.post("/:id/update/prefix", isAllowedToEditBot, async (req, res) => {
     const {prefix } = req.body;
 
