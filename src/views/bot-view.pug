@@ -32,6 +32,7 @@ block content
                     div(class="buttons is-centered")
                         a(class="button is-dark" :href="bot.invite_link") Invite
                         a(class="button is-dark" :href="bot.website_link") Website
+                        a(class="button is-dark" v-if="hasPermissions" :href="`/bot/${bot.bot_id}/apikey`") Api Key
                         a(class="button is-dark" v-if="hasPermissions" :href="`/bot/${bot.bot_id}/edit`") Edit
 
                 br
