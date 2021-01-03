@@ -4,7 +4,7 @@ block content
     div(class="container" id="mainBotView")
         div(class="card is-shadow" v-if="bot")
             div(class="card-image has-text-centered")
-                img(class="is-rounded" id="avatar" src=bot.user.displayAvatarURL({size: 4096}) alt="Bot Avatar")
+                img(class="is-rounded" id="avatar" src=bot.user.displayAvatarURL({size: 4096}) alt="Bot Avatar" width="256" height="256")
 
             div(class="card-content has-text-centered")
                 label(class="title") {{bot.user.username}}
