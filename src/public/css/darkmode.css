@@ -22,6 +22,6 @@ html {
     background: #2F2F2F;
 }
 
-h1, label, p{
+h1, label, p, strong {
     color: #FFFFFF !important;
 }

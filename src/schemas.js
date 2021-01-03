@@ -19,7 +19,7 @@ const commentSchema = Joi.object({
     bot_id: user_id,
     author_id: user_id,
     comment_id: Joi.string().required(),
-    content: Joi.string().min(1).max(100).required(),
+    content: Joi.string().min(1).max(200).required(),
     commented: Joi.number().required(),
     likes: Joi.number().required()
 });
