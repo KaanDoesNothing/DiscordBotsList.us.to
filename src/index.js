@@ -53,7 +53,7 @@ app.use("/bot", require("./routes/bot"));
 app.get("/", async (req, res) => {
     let search = req.query.search;
     
-    const bots = await db.get("bots").find({verified: true});
+    const bots = await db.get("bots").find({verified: true}, {sort: {added: -1}});
     let finalBots = await Promise.all(bots.map(bot => fixBot(bot)));
 
     if(search && search.length > 0) {
