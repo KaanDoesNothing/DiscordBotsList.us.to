@@ -2,7 +2,7 @@ extends layouts/main
 
 block content
     div(class="container" id="mainBotView")
-        div(class="card is-shadow")
+        div(class="card is-shadow" v-if="bot")
             div(class="card-image has-text-centered")
                 img(class="is-rounded" id="avatar" src=bot.user.displayAvatarURL({size: 4096}) alt="Bot Avatar")
 
@@ -73,7 +73,7 @@ block content
             el: "#mainBotView",
             data() {
                 return {
-                    bot: {},
+                    bot: undefined,
                     hasPermissions: #{hasPermissions},
                     comments: [],
                     comment_content: "",
