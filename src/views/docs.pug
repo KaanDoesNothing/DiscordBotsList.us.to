@@ -1,0 +1,18 @@
+extends layouts/main
+
+block content
+    div(class="text-center")
+        :markdown-it(linkify langPrefix='highlight-')
+            # **Documentation**
+
+            You can achieve your api key by:
+            ```
+            Going to **/bot/:id/apikey**
+            Viewing your bot while logged in.
+            ```
+
+            To post your bot stats:
+            ```
+            You can use our module(Which doesn't exist yet) 
+            By posting to the following url: /bot/:id/stats with a body like {api_key: String, guilds: Number, channels: Number, users: Number}
+            ```

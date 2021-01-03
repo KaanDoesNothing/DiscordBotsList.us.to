@@ -20,6 +20,7 @@
     "express-session": "^1.17.1",
     "hat": "0.0.3",
     "joi": "^17.3.0",
+    "jstransformer-markdown-it": "^2.1.0",
     "knex": "^0.21.15",
     "moment": "^2.29.1",
     "mongoose": "^5.11.9",

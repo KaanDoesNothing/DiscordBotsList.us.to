@@ -11,6 +11,7 @@ nav(class="navbar has-shadow", role="navigation")
     div(class="navbar-menu", id="navbarContent")
         div(class="navbar-end")
             a(class="navbar-item", href=`/switch_theme`) #{darkMode ? "Light Theme" : "Dark Theme"}
+            a(class="navbar-item", href=`/docs`) Documentation
 
             if session
                 if session.permissions.moderator

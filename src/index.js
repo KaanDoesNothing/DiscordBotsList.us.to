@@ -115,6 +115,10 @@ app.post("/add", isLoggedIn, async (req, res) => {
     });
 });
 
+app.get("/docs", (req, res) => {
+    res.render("docs");
+});
+
 app.get("/test", (req, res) => {
     res.render("test/index");
 });
