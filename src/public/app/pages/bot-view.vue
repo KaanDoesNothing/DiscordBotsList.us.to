@@ -76,7 +76,7 @@
                                     img(class="is-rounded" :src="comment.author.displayAvatarURL")
                             div(class="media-content")
                                 div(class="content")
-                                    a(:href="`/profile/${comment.author_id}`")
+                                    router-link(:to="`/profile/${comment.author_id}`")
                                         strong {{comment.author.username}} 
                                     label {{comment.readableCommentDate}}
                                     br

@@ -404,21 +404,28 @@ exports.default = _default;
                   ])
                 ]),
                 _c("div", { staticClass: "media-content" }, [
-                  _c("div", { staticClass: "content" }, [
-                    _c(
-                      "a",
-                      { attrs: { href: "/profile/" + comment.author_id } },
-                      [
-                        _c("strong", [
-                          _vm._v(_vm._s(comment.author.username) + " ")
-                        ])
-                      ]
-                    ),
-                    _c("label", [_vm._v(_vm._s(comment.readableCommentDate))]),
-                    _c("br"),
-                    _c("label", [_vm._v(_vm._s(comment.content))]),
-                    _c("br")
-                  ])
+                  _c(
+                    "div",
+                    { staticClass: "content" },
+                    [
+                      _c(
+                        "router-link",
+                        { attrs: { to: "/profile/" + comment.author_id } },
+                        [
+                          _c("strong", [
+                            _vm._v(_vm._s(comment.author.username) + " ")
+                          ])
+                        ]
+                      ),
+                      _c("label", [
+                        _vm._v(_vm._s(comment.readableCommentDate))
+                      ]),
+                      _c("br"),
+                      _c("label", [_vm._v(_vm._s(comment.content))]),
+                      _c("br")
+                    ],
+                    1
+                  )
                 ])
               ])
             })
