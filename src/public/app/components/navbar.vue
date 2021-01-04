@@ -10,15 +10,14 @@
 
         div(class="navbar-menu", :class="{'is-active': isNavbarOpen}" id="navbarContent")
             div(class="navbar-end")
-                template(v-if="session")
+                template(v-if="isLoggedIn")
                     //- if session.permissions.moderator
                     //-     a(class="navbar-item", href=`/admin`) Admin
 
                     router-link(class="navbar-item", :to="'/add'") Add Bot
                     router-link(class="navbar-item", :to="'/profile/' + session.id") {{session._username}}
-                    //- a(class="navbar-item", :href="'/profile/' + session.id") {{session._username}}
 
-                template(v-if="!session")
+                template(v-if="!isLoggedIn")
                     a(class="navbar-item", href="/auth/login") Login
 </template>
 
@@ -33,6 +32,6 @@
                 isNavbarOpen: false
             }
         },
-        computed: mapState(["session"])
+        computed: mapState(["session", "isLoggedIn"])
     });
 </script>

@@ -14980,7 +14980,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-//
 var _default = _vue.default.extend({
   name: "Navbar",
   data: function data() {
@@ -14988,7 +14987,7 @@ var _default = _vue.default.extend({
       isNavbarOpen: false
     };
   },
-  computed: (0, _vuex.mapState)(["session"])
+  computed: (0, _vuex.mapState)(["session", "isLoggedIn"])
 });
 
 exports.default = _default;
@@ -15048,7 +15047,7 @@ exports.default = _default;
             "div",
             { staticClass: "navbar-end" },
             [
-              _vm.session
+              _vm.isLoggedIn
                 ? [
                     _c(
                       "router-link",
@@ -15065,7 +15064,7 @@ exports.default = _default;
                     )
                   ]
                 : _vm._e(),
-              !_vm.session
+              !_vm.isLoggedIn
                 ? [
                     _c(
                       "a",
