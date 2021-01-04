@@ -56,7 +56,7 @@ app.get("/switch_theme", async (req, res) => {
 });
 
 app.use((req, res) => {
-    return res.render("client");
+    return res.render("client", {client});
 });
 // app.use("/admin", isLoggedIn, isModerator, require("./routes/admin"));
 // app.use("/bot", require("./routes/bot"));
