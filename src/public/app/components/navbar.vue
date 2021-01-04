@@ -10,8 +10,9 @@
 
         div(class="navbar-menu", :class="{'is-active': isNavbarOpen}" id="navbarContent")
             div(class="navbar-end")
+                a(class="navbar-item", href="/switch_theme") {{darkMode ? "Dark" : "Light"}}
+                
                 template(v-if="isLoggedIn")
-                    a(class="navbar-item", href="/switch_theme") {{darkMode ? "Dark" : "Light"}}
                     //- if session.permissions.moderator
                     //-     a(class="navbar-item", href=`/admin`) Admin
 

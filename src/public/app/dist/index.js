@@ -14981,6 +14981,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
 var _default = _vue.default.extend({
   name: "Navbar",
   data: function data() {
@@ -15049,16 +15050,16 @@ exports.default = _default;
             "div",
             { staticClass: "navbar-end" },
             [
+              _c(
+                "a",
+                {
+                  staticClass: "navbar-item",
+                  attrs: { href: "/switch_theme" }
+                },
+                [_vm._v(_vm._s(_vm.darkMode ? "Dark" : "Light"))]
+              ),
               _vm.isLoggedIn
                 ? [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "navbar-item",
-                        attrs: { href: "/switch_theme" }
-                      },
-                      [_vm._v(_vm._s(_vm.darkMode ? "Dark" : "Light"))]
-                    ),
                     _c(
                       "router-link",
                       { staticClass: "navbar-item", attrs: { to: "/add" } },
