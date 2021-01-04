@@ -14,7 +14,9 @@ html(lang="en")
         if session
             script.
                 window._session = !{JSON.stringify(session)}
-        
+
+        if darkMode
+            link(rel="stylesheet", type="text/css", href="/static/css/darkmode.css")        
     body
         block content
 
