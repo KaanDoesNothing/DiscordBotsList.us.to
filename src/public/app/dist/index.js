@@ -15056,7 +15056,7 @@ exports.default = _default;
                   staticClass: "navbar-item",
                   attrs: { href: "/switch_theme" }
                 },
-                [_vm._v(_vm._s(_vm.darkMode ? "Dark" : "Light"))]
+                [_vm._v(_vm._s(_vm.darkMode ? "Light" : "Dark"))]
               ),
               _vm.isLoggedIn
                 ? [

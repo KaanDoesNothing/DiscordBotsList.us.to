@@ -10,7 +10,7 @@
 
         div(class="navbar-menu", :class="{'is-active': isNavbarOpen}" id="navbarContent")
             div(class="navbar-end")
-                a(class="navbar-item", href="/switch_theme") {{darkMode ? "Dark" : "Light"}}
+                a(class="navbar-item", href="/switch_theme") {{darkMode ? "Light" : "Dark"}}
                 
                 template(v-if="isLoggedIn")
                     //- if session.permissions.moderator
