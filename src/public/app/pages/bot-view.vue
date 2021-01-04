@@ -138,3 +138,34 @@
         computed: mapState(["session", "isLoggedIn"])
     }
 </script>
+
+<style lang="scss">
+    #mainBotView {
+        padding: 5%;
+    }
+
+    #avatar {
+        margin: 1%;
+    }
+
+    @media (min-width: 768px) {
+        #mainBotView {
+            width: 800px;
+            margin-top: 1%;
+            padding: 0%;
+        }
+    }
+
+    .message {
+        min-height: 250px;
+    }
+
+    .message-header {
+        text-align: center !important;
+    }
+
+    .editInput {
+        text-align: center !important;
+        width: 40%;
+    }
+</style>

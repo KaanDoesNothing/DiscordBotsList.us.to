@@ -39,3 +39,17 @@
         }
     }
 </script>
+
+<style lang="scss">
+    .botColumns {
+        margin: 10%;
+    }
+
+    .botColumns .field {
+        width: 20%;
+        margin-top: 1%;
+        margin-bottom: 1%;
+        margin-left: 40%;
+        margin-right: 40%;
+    }
+</style>

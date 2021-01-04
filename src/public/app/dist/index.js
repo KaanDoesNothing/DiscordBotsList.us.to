@@ -15113,7 +15113,74 @@ render._withStripped = true
         
       }
     })();
-},{"vue":"../../../node_modules/vue/dist/vue.runtime.esm.js","vuex":"../../../node_modules/vuex/dist/vuex.esm.js","vue-hot-reload-api":"../../../node_modules/vue-hot-reload-api/dist/index.js"}],"App.vue":[function(require,module,exports) {
+},{"vue":"../../../node_modules/vue/dist/vue.runtime.esm.js","vuex":"../../../node_modules/vuex/dist/vuex.esm.js","vue-hot-reload-api":"../../../node_modules/vue-hot-reload-api/dist/index.js"}],"../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
+
+  return bundleURL;
+}
+
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/bundle-url.js"}],"App.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -15181,41 +15248,13 @@ render._withStripped = true
         }
 
         
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
       }
     })();
-},{"vue":"../../../node_modules/vue/dist/vue.runtime.esm.js","./components/navbar.vue":"components/navbar.vue","vue-hot-reload-api":"../../../node_modules/vue-hot-reload-api/dist/index.js"}],"../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
-
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
-  }
-
-  return bundleURL;
-}
-
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
-
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
-  }
-
-  return '/';
-}
-
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
-}
-
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/bundle-loader.js":[function(require,module,exports) {
+},{"vue":"../../../node_modules/vue/dist/vue.runtime.esm.js","./components/navbar.vue":"components/navbar.vue","_css_loader":"../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/css-loader.js","vue-hot-reload-api":"../../../node_modules/vue-hot-reload-api/dist/index.js"}],"../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/bundle-loader.js":[function(require,module,exports) {
 var getBundleURL = require('./bundle-url').getBundleURL;
 
 function loadBundlesLazy(bundles) {
@@ -15332,7 +15371,7 @@ var router = new _vueRouter.default({
 });
 var _default = router;
 exports.default = _default;
-},{"vue-router":"../../../node_modules/vue-router/dist/vue-router.esm.js","_bundle_loader":"../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/bundle-loader.js","./pages/index.vue":[["pages.66479d92.js","pages/index.vue"],"pages.66479d92.js.map","pages/index.vue"],"./pages/bot-view.vue":[["bot-view.53b53c37.js","pages/bot-view.vue"],"bot-view.53b53c37.js.map","pages/bot-view.vue"],"./pages/add.vue":[["add.1dffd732.js","pages/add.vue"],"add.1dffd732.js.map","pages/add.vue"]}],"store.js":[function(require,module,exports) {
+},{"vue-router":"../../../node_modules/vue-router/dist/vue-router.esm.js","_bundle_loader":"../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/bundle-loader.js","./pages/index.vue":[["pages.66479d92.js","pages/index.vue"],"pages.66479d92.js.map","pages.66479d92.css","pages/index.vue"],"./pages/bot-view.vue":[["bot-view.53b53c37.js","pages/bot-view.vue"],"bot-view.53b53c37.js.map","bot-view.53b53c37.css","pages/bot-view.vue"],"./pages/add.vue":[["add.1dffd732.js","pages/add.vue"],"add.1dffd732.js.map","pages/add.vue"]}],"store.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -15387,42 +15426,7 @@ new _vue.default({
   },
   axios: _axios.default
 }).$mount("#app");
-},{"vue":"../../../node_modules/vue/dist/vue.runtime.esm.js","axios":"../../../node_modules/axios/index.js","vue-router":"../../../node_modules/vue-router/dist/vue-router.esm.js","./App.vue":"App.vue","./router":"router.js","./store":"store.js"}],"../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
-
-function updateLink(link) {
-  var newLink = link.cloneNode();
-
-  newLink.onload = function () {
-    link.remove();
-  };
-
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
-
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
-      }
-    }
-
-    cssTimeout = null;
-  }, 50);
-}
-
-module.exports = reloadCSS;
-},{"./bundle-url":"../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/bundle-url.js"}],"../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"vue":"../../../node_modules/vue/dist/vue.runtime.esm.js","axios":"../../../node_modules/axios/index.js","vue-router":"../../../node_modules/vue-router/dist/vue-router.esm.js","./App.vue":"App.vue","./router":"router.js","./store":"store.js"}],"../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -15626,6 +15630,26 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
+},{}],"../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/loaders/browser/css-loader.js":[function(require,module,exports) {
+module.exports = function loadCSSBundle(bundle) {
+  return new Promise(function (resolve, reject) {
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = bundle;
+
+    link.onerror = function (e) {
+      link.onerror = link.onload = null;
+      reject(e);
+    };
+
+    link.onload = function () {
+      link.onerror = link.onload = null;
+      resolve();
+    };
+
+    document.getElementsByTagName('head')[0].appendChild(link);
+  });
+};
 },{}],"../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/loaders/browser/js-loader.js":[function(require,module,exports) {
 module.exports = function loadJSBundle(bundle) {
   return new Promise(function (resolve, reject) {
@@ -15649,6 +15673,6 @@ module.exports = function loadJSBundle(bundle) {
   });
 };
 },{}],0:[function(require,module,exports) {
-var b=require("../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/bundle-loader.js");b.register("js",require("../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/loaders/browser/js-loader.js"));
+var b=require("../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/bundle-loader.js");b.register("css",require("../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/loaders/browser/css-loader.js"));b.register("js",require("../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/loaders/browser/js-loader.js"));
 },{}]},{},["../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js",0,"index.js"], null)
 //# sourceMappingURL=/index.js.map

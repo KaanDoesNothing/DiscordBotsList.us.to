@@ -14,3 +14,9 @@
         }
     });
 </script>
+
+<style lang="scss">
+    .text-center {
+        text-align: center !important;
+    }
+</style>
