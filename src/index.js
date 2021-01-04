@@ -47,9 +47,14 @@ app.use((req, res, next) => {
 });
 
 app.use("/auth", require("./routes/auth"));
-app.use("/admin", isLoggedIn, isModerator, require("./routes/admin"));
-app.use("/bot", require("./routes/bot"));
 app.use("/api", require("./routes/api/index"));
+
+app.use((req, res) => {
+    return res.render("client");
+});
+// app.use("/admin", isLoggedIn, isModerator, require("./routes/admin"));
+// app.use("/bot", require("./routes/bot"));
+// app.use("/api", require("./routes/api/index"));
 
 app.get("/", async (req, res) => {
     let search = req.query.search;
@@ -64,18 +69,18 @@ app.get("/", async (req, res) => {
     res.render("home", {bots: finalBots, search});
 });
 
-app.get("/bots/json", async (req, res) => {
-    let search = req.query.search;
+// app.get("/bots/json", async (req, res) => {
+//     let search = req.query.search;
     
-    const bots = await db.get("bots").find({verified: true});
-    let finalBots = await Promise.all(bots.map(bot => fixBot(bot)));
+//     const bots = await db.get("bots").find({verified: true});
+//     let finalBots = await Promise.all(bots.map(bot => fixBot(bot)));
 
-    if(search && search.length > 0) {
-        finalBots = finalBots.filter(bot => bot.user.username.startsWith(search));
-    }
+//     if(search && search.length > 0) {
+//         finalBots = finalBots.filter(bot => bot.user.username.startsWith(search));
+//     }
 
-    return res.json({bots});
-});
+//     return res.json({bots});
+// });
 
 app.get("/switch_theme", async (req, res) => {
     req.session.darkMode = !req.session.darkMode;
@@ -120,12 +125,8 @@ app.get("/docs", (req, res) => {
     res.render("docs");
 });
 
-app.get("/test", (req, res) => {
-    res.render("test/index");
-});
-
-app.get("/test1", (req, res) => {
-    res.render("test/index");
+app.get("/csr", (req, res) => {
+    res.render("client");
 });
 
 app.listen(config.website.port || 4000);
