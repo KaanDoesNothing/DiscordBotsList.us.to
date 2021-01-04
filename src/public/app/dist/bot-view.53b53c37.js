@@ -228,121 +228,114 @@ exports.default = _default;
               }
             })
           ]),
-          _c(
-            "div",
-            { staticClass: "card-content has-text-centered" },
-            [
-              _c("label", { staticClass: "title" }, [
-                _vm._v(_vm._s(_vm.bot.user.username))
-              ]),
+          _c("div", { staticClass: "card-content has-text-centered" }, [
+            _c("label", { staticClass: "title" }, [
+              _vm._v(_vm._s(_vm.bot.user.username))
+            ]),
+            _c("br"),
+            _c("div", { staticClass: "control" }, [
               _c("br"),
-              _c("div", { staticClass: "control" }, [
-                _c("br"),
-                _c("span", { staticClass: "tag" }, [_vm._v("Owner")]),
-                _c("a", { staticClass: "tag is-info" }, [
-                  _vm._v(_vm._s(_vm.bot.owner.tag))
-                ])
-              ]),
-              _c("div", { staticClass: "control" }, [
-                _c("br"),
-                _c("span", { staticClass: "tag" }, [_vm._v("Verified")]),
-                _vm.bot.verified
-                  ? _c("a", { staticClass: "tag is-success" }, [_vm._v("Yes")])
-                  : _vm._e(),
-                !_vm.bot.verified
-                  ? _c("a", { staticClass: "tag is-danger" }, [_vm._v("No")])
-                  : _vm._e()
-              ]),
-              _c("div", { staticClass: "control" }, [
-                _c("br"),
-                _c("span", { staticClass: "tag" }, [_vm._v("Prefix")]),
-                _c("a", { staticClass: "tag is-info" }, [
-                  _vm._v(_vm._s(_vm.bot.prefix))
-                ])
-              ]),
-              _vm.stats
-                ? [
-                    _vm.stats.guilds
-                      ? _c("div", { staticClass: "control" }, [
-                          _c("br"),
-                          _c("span", { staticClass: "tag" }, [
-                            _vm._v("Guilds")
-                          ]),
-                          _c("a", { staticClass: "tag is-info" }, [
-                            _vm._v(_vm._s(_vm.stats.guilds))
-                          ])
-                        ])
-                      : _vm._e(),
-                    _vm.stats.channels
-                      ? _c("div", { staticClass: "control" }, [
-                          _c("br"),
-                          _c("span", { staticClass: "tag" }, [
-                            _vm._v("Channels")
-                          ]),
-                          _c("a", { staticClass: "tag is-info" }, [
-                            _vm._v(_vm._s(_vm.stats.channels))
-                          ])
-                        ])
-                      : _vm._e(),
-                    _vm.stats.users
-                      ? _c("div", { staticClass: "control" }, [
-                          _c("br"),
-                          _c("span", { staticClass: "tag" }, [_vm._v("users")]),
-                          _c("a", { staticClass: "tag is-info" }, [
-                            _vm._v(_vm._s(_vm.stats.users))
-                          ])
-                        ])
-                      : _vm._e()
-                  ]
-                : _vm._e(),
-              _c("div", { staticClass: "control" }, [
-                _c("br"),
-                _c(
-                  "div",
-                  { staticClass: "buttons is-centered" },
-                  [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "button is-dark",
-                        attrs: { href: _vm.bot.invite_link }
-                      },
-                      [_vm._v("Invite")]
-                    ),
-                    _c(
-                      "a",
-                      {
-                        staticClass: "button is-dark",
-                        attrs: { href: _vm.bot.website_link }
-                      },
-                      [_vm._v("Website")]
-                    ),
-                    _vm.hasPermissions
-                      ? _c(
-                          "router-link",
-                          {
-                            staticClass: "button is-dark",
-                            attrs: { to: "/bot/" + _vm.bot.bot_id + "/edit" }
-                          },
-                          [_vm._v("Edit")]
-                        )
-                      : _vm._e()
-                  ],
-                  1
-                )
-              ]),
-              _c("br"),
-              _c("div", { staticClass: "message has-text-centered" }, [
-                _c("div", { staticClass: "message-header text-center" }, [
-                  _vm._v("Description")
-                ]),
-                _c("div", { staticClass: "message-body" }, [
-                  _vm._v(_vm._s(_vm.bot.description))
-                ])
+              _c("span", { staticClass: "tag" }, [_vm._v("Owner")]),
+              _c("a", { staticClass: "tag is-info" }, [
+                _vm._v(_vm._s(_vm.bot.owner.tag))
               ])
-            ],
-            2
-          )
+            ]),
+            _c("div", { staticClass: "control" }, [
+              _c("br"),
+              _c("span", { staticClass: "tag" }, [_vm._v("Verified")]),
+              _vm.bot.verified
+                ? _c("a", { staticClass: "tag is-success" }, [_vm._v("Yes")])
+                : _vm._e(),
+              !_vm.bot.verified
+                ? _c("a", { staticClass: "tag is-danger" }, [_vm._v("No")])
+                : _vm._e()
+            ]),
+            _c("div", { staticClass: "control" }, [
+              _c("br"),
+              _c("span", { staticClass: "tag" }, [_vm._v("Prefix")]),
+              _c("a", { staticClass: "tag is-info" }, [
+                _vm._v(_vm._s(_vm.bot.prefix))
+              ])
+            ]),
+            _vm.stats
+              ? _c("div", [
+                  _vm.stats.guilds
+                    ? _c("div", { staticClass: "control" }, [
+                        _c("br"),
+                        _c("span", { staticClass: "tag" }, [_vm._v("Guilds")]),
+                        _c("a", { staticClass: "tag is-info" }, [
+                          _vm._v(_vm._s(_vm.stats.guilds))
+                        ])
+                      ])
+                    : _vm._e(),
+                  _vm.stats.channels
+                    ? _c("div", { staticClass: "control" }, [
+                        _c("br"),
+                        _c("span", { staticClass: "tag" }, [
+                          _vm._v("Channels")
+                        ]),
+                        _c("a", { staticClass: "tag is-info" }, [
+                          _vm._v(_vm._s(_vm.stats.channels))
+                        ])
+                      ])
+                    : _vm._e(),
+                  _vm.stats.users
+                    ? _c("div", { staticClass: "control" }, [
+                        _c("br"),
+                        _c("span", { staticClass: "tag" }, [_vm._v("users")]),
+                        _c("a", { staticClass: "tag is-info" }, [
+                          _vm._v(_vm._s(_vm.stats.users))
+                        ])
+                      ])
+                    : _vm._e()
+                ])
+              : _vm._e(),
+            _c("div", { staticClass: "control" }, [
+              _c("br"),
+              _c(
+                "div",
+                { staticClass: "buttons is-centered" },
+                [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "button is-dark",
+                      attrs: { href: _vm.bot.invite_link }
+                    },
+                    [_vm._v("Invite")]
+                  ),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "button is-dark",
+                      attrs: { href: _vm.bot.website_link }
+                    },
+                    [_vm._v("Website")]
+                  ),
+                  _vm.hasPermissions
+                    ? _c(
+                        "router-link",
+                        {
+                          staticClass: "button is-dark",
+                          attrs: { to: "/bot/" + _vm.bot.bot_id + "/edit" }
+                        },
+                        [_vm._v("Edit")]
+                      )
+                    : _vm._e()
+                ],
+                1
+              )
+            ]),
+            _c("br"),
+            _c("div", { staticClass: "message has-text-centered" }, [
+              _c("div", { staticClass: "message-header text-center" }, [
+                _vm._v("Description")
+              ]),
+              _c("div", { staticClass: "message-body" }, [
+                _vm._v(_vm._s(_vm.bot.description))
+              ])
+            ])
+          ])
         ])
       : _vm._e(),
     _c("br"),

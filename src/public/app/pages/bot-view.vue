@@ -25,7 +25,7 @@
                         span(class="tag") Prefix
                         a(class="tag is-info") {{bot.prefix}}
 
-                    <template v-if="stats">
+                    div(v-if="stats")
                         div(class="control" v-if="stats.guilds")
                             br
                             span(class="tag") Guilds
@@ -38,7 +38,6 @@
                             br
                             span(class="tag") users
                             a(class="tag is-info") {{stats.users}}
-                    </template>
 
                     div(class="control")
                         br
