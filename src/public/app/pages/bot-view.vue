@@ -46,7 +46,7 @@
                             a(class="button is-dark" :href="bot.invite_link") Invite
                             a(class="button is-dark" :href="bot.website_link") Website
                             //- a(class="button is-dark" v-if="hasPermissions" :href="`/bot/${bot.bot_id}/edit`") Api Key
-                            a(class="button is-dark" v-if="hasPermissions" :href="`/bot/${bot.bot_id}/edit`") Edit
+                            router-link(class="button is-dark" v-if="hasPermissions" :to="`/bot/${bot.bot_id}/edit`") Edit
 
                     br
                     
@@ -93,7 +93,6 @@
         data() {
             return {
                 bot: undefined,
-                hasPermissions: this.session && this.bot ? this.session._id === this.bot._id : false,
                 comments: [],
                 comment_content: "",
                 lastError: "",
@@ -103,6 +102,7 @@
         },
         mounted() {
             this.bot_id = this.$route.params.id;
+
             this.fetchBot();
             this.fetchComments();
             this.fetchStats();
@@ -135,7 +135,13 @@
                 });
             }
         },
-        computed: mapState(["session", "isLoggedIn"])
+        computed: {
+            hasPermissions() {
+                // console.log(this.session && this.bot ? this.session._id === this.bot_id : false)
+                return this.session && this.bot ? this.session._id === this.bot.owner_id : false;
+            },
+            ...mapState(["session", "isLoggedIn"])
+        }
     }
 </script>
 

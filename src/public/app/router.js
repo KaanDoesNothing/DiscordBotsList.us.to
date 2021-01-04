@@ -14,6 +14,10 @@ const router = new VueRouter({
             component: () => import("./pages/bot-view.vue")
         },
         {
+            path: "/bot/:id/edit",
+            component: () => import("./pages/bot-edit.vue")
+        },
+        {
             path: "/add",
             component: () => import("./pages/add.vue")
         }
