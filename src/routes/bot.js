@@ -21,6 +21,19 @@ app.get("/:id", async (req, res) => {
     res.render("bot-view", {bot: finalBot, hasPermissions});
 });
 
+app.get("/:id/edit", isLoggedIn, isAllowedToEditBot, async (req, res) => {
+    const bot = await db.get("bots").findOne({bot_id: req.params.id});
+    const finalBot = await fixBot(bot);
+
+    let hasPermissions = false;
+
+    if(res.locals.session) {
+        if(finalBot.owner_id === res.locals.session._id) hasPermissions = true;
+    }
+
+    res.render("bot-edit", {bot: finalBot, hasPermissions});
+});
+
 app.get("/:id/delete", isAllowedToEditBot, async (req, res) => {
     await db.get("bots").remove({bot_id: req.params.id});
 });

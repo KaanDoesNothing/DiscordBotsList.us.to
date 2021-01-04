@@ -15,6 +15,14 @@ const botSchema = Joi.object({
     prefix: Joi.string().min(1).required()
 });
 
+const editBotSchema = Joi.object({
+    short_description: Joi.string().min(5).max(50).required(),
+    description: Joi.string().min(5).max(500).required(),
+    invite_link: Joi.string().uri().required(),
+    website_link: Joi.string().uri(),
+    prefix: Joi.string().min(1).required()
+});
+
 const commentSchema = Joi.object({
     bot_id: user_id,
     author_id: user_id,
@@ -35,6 +43,7 @@ const botDataSchema = Joi.object({
 
 module.exports = {
     botSchema,
+    editBotSchema,
     commentSchema,
     botDataSchema
 }
