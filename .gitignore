@@ -1,5 +1,5 @@
 node_modules/
 package-lock.json
-src/public/app
+src/public/app/.cache
 src/public/bundle/.cache
 src/config.js
