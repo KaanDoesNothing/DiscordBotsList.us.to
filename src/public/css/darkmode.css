@@ -18,6 +18,10 @@ html {
     text-decoration: none !important;
 }
 
+.navbar .navbar-item:hover {
+    background: transparent !important;
+}
+
 .navbar .navbar-menu {
     background: #121212;
 }
