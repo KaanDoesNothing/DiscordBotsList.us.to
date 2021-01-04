@@ -117,281 +117,23 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"pages/bot-edit.vue":[function(require,module,exports) {
-"use strict";
+})({"pages/404.vue":[function(require,module,exports) {
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _axios = _interopRequireDefault(require("axios"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default = {
-  data: function data() {
-    return {
-      data: undefined,
-      lastError: "",
-      lastMessage: "",
-      apiKey: "",
-      bot_id: undefined
-    };
-  },
-  mounted: function mounted() {
-    this.bot_id = this.$route.params.id;
-    this.fetch();
-  },
-  methods: {
-    fetch: function fetch() {
-      var _this = this;
-
-      _axios.default.get("/api/bot/edit/".concat(this.bot_id)).then(function (res) {
-        _this.data = res.data;
-      });
-
-      _axios.default.get("/api/bot/apikey/".concat(this.bot_id)).then(function (res) {
-        _this.apiKey = res.data.api_key;
-      });
-    },
-    post: function post() {
-      var _this2 = this;
-
-      _axios.default.post("/api/bot/edit/".concat(this.bot_id), this.data).then(function (res) {
-        _this2.lastError = "";
-        _this2.lastMessage = "";
-        if (res.data.error) _this2.lastError = res.data.error;
-        if (res.data.msg) _this2.lastMessage = res.data.msg;
-        console.log(res.data);
-
-        _this2.fetch();
-      });
-    }
-  }
-};
-exports.default = _default;
-        var $875af1 = exports.default || module.exports;
+        var $b4e006 = exports.default || module.exports;
       
-      if (typeof $875af1 === 'function') {
-        $875af1 = $875af1.options;
+      if (typeof $b4e006 === 'function') {
+        $b4e006 = $b4e006.options;
       }
     
         /* template */
-        Object.assign($875af1, (function () {
+        Object.assign($b4e006, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass: "card",
-      staticStyle: { margin: "10%" },
-      attrs: { id: "editBotForm" }
-    },
-    [
-      _vm.data
-        ? _c("div", { staticClass: "card-content" }, [
-            _vm.lastError
-              ? _c("div", { staticClass: "notification is-danger" }, [
-                  _vm._v(_vm._s(_vm.lastError))
-                ])
-              : _vm._e(),
-            _vm.lastMessage
-              ? _c("div", { staticClass: "notification is-success" }, [
-                  _vm._v(_vm._s(_vm.lastMessage))
-                ])
-              : _vm._e(),
-            _c("div", { staticClass: "field" }, [
-              _c("label", { staticClass: "label" }, [_vm._v("Api Key")]),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.apiKey,
-                    expression: "apiKey"
-                  }
-                ],
-                staticClass: "input",
-                attrs: { type: "text", readonly: "readonly" },
-                domProps: { value: _vm.apiKey },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.apiKey = $event.target.value
-                  }
-                }
-              })
-            ]),
-            _c("div", { staticClass: "field" }, [
-              _c("label", { staticClass: "label" }, [_vm._v("Prefix")]),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.data.prefix,
-                    expression: "data.prefix"
-                  }
-                ],
-                staticClass: "input",
-                attrs: { type: "text" },
-                domProps: { value: _vm.data.prefix },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.data, "prefix", $event.target.value)
-                  }
-                }
-              })
-            ]),
-            _c("div", { staticClass: "field" }, [
-              _c("label", { staticClass: "label" }, [
-                _vm._v("Short Description")
-              ]),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.data.short_description,
-                    expression: "data.short_description"
-                  }
-                ],
-                staticClass: "input",
-                attrs: { type: "text" },
-                domProps: { value: _vm.data.short_description },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.data, "short_description", $event.target.value)
-                  }
-                }
-              })
-            ]),
-            _c("div", { staticClass: "field" }, [
-              _c("label", { staticClass: "label" }, [_vm._v("Description")]),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.data.description,
-                    expression: "data.description"
-                  }
-                ],
-                staticClass: "input",
-                attrs: { type: "text" },
-                domProps: { value: _vm.data.description },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.data, "description", $event.target.value)
-                  }
-                }
-              }),
-              _c("div", { staticClass: "field" })
-            ]),
-            _c("label", { staticClass: "label" }, [
-              _vm._v("Invite link"),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.data.invite_link,
-                    expression: "data.invite_link"
-                  }
-                ],
-                staticClass: "input",
-                attrs: { type: "text" },
-                domProps: { value: _vm.data.invite_link },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.data, "invite_link", $event.target.value)
-                  }
-                }
-              })
-            ]),
-            _c("label", { staticClass: "label" }, [
-              _vm._v("Website link"),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.data.website_link,
-                    expression: "data.website_link"
-                  }
-                ],
-                staticClass: "input",
-                attrs: { type: "text" },
-                domProps: { value: _vm.data.website_link },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.data, "website_link", $event.target.value)
-                  }
-                }
-              })
-            ]),
-            _c("div", { staticClass: "field" }, [
-              _c("div", { staticClass: "control" }, [
-                _c(
-                  "button",
-                  { staticClass: "button is-link", on: { click: _vm.post } },
-                  [_vm._v("Submit")]
-                )
-              ])
-            ])
-          ])
-        : _vm._e()
-    ]
-  )
+  return _c("h1", { staticClass: "title text-center" }, [
+    _vm._v("The page you're looking for doesn't exist I guess?")
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -413,16 +155,16 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$875af1', $875af1);
+            api.createRecord('$b4e006', $b4e006);
           } else {
-            api.reload('$875af1', $875af1);
+            api.reload('$b4e006', $b4e006);
           }
         }
 
         
       }
     })();
-},{"axios":"../../../node_modules/axios/index.js","_css_loader":"../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/css-loader.js","vue-hot-reload-api":"../../../node_modules/vue-hot-reload-api/dist/index.js","vue":"../../../node_modules/vue/dist/vue.runtime.esm.js"}],"../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"vue-hot-reload-api":"../../../node_modules/vue-hot-reload-api/dist/index.js","vue":"../../../node_modules/vue/dist/vue.runtime.esm.js"}],"../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -627,4 +369,4 @@ function hmrAcceptRun(bundle, id) {
   }
 }
 },{}]},{},["../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js"], null)
-//# sourceMappingURL=/bot-edit.23069ead.js.map
+//# sourceMappingURL=/404.cc2eb4dd.js.map
