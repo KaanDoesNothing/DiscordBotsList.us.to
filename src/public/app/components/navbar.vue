@@ -3,19 +3,19 @@
         div(class="navbar-brand")
             router-link(class="navbar-item", to="/") Discord Bots
 
-            a(class="navbar-burger", role="button", aria-expanded="false", data-target="navbarContent" id="openNavbar")
+            a(class="navbar-burger", @click="isNavbarOpen = !isNavbarOpen")
                 span(aria-hidden="true")
                 span(aria-hidden="true")
                 span(aria-hidden="true")
 
-        div(class="navbar-menu", id="navbarContent")
+        div(class="navbar-menu", :class="{'is-active': isNavbarOpen}" id="navbarContent")
             div(class="navbar-end")
                 template(v-if="session")
                     //- if session.permissions.moderator
                     //-     a(class="navbar-item", href=`/admin`) Admin
 
                     router-link(class="navbar-item", :to="'/add'") Add Bot
-                    router-link(class="navbar-item", :to="'/profile/' + session.id") Add Bot
+                    router-link(class="navbar-item", :to="'/profile/' + session.id") {{session._username}}
                     //- a(class="navbar-item", :href="'/profile/' + session.id") {{session._username}}
 
                 template(v-if="!session")
@@ -28,6 +28,11 @@
 
     export default Vue.extend({
         name: "Navbar",
+        data() {
+            return {
+                isNavbarOpen: false
+            }
+        },
         computed: mapState(["session"])
     });
 </script>

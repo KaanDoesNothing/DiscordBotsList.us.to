@@ -14983,6 +14983,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 var _default = _vue.default.extend({
   name: "Navbar",
+  data: function data() {
+    return {
+      isNavbarOpen: false
+    };
+  },
   computed: (0, _vuex.mapState)(["session"])
 });
 
@@ -15012,13 +15017,32 @@ exports.default = _default;
             { staticClass: "navbar-item", attrs: { to: "/" } },
             [_vm._v("Discord Bots")]
           ),
-          _vm._m(0)
+          _c(
+            "a",
+            {
+              staticClass: "navbar-burger",
+              on: {
+                click: function($event) {
+                  _vm.isNavbarOpen = !_vm.isNavbarOpen
+                }
+              }
+            },
+            [
+              _c("span", { attrs: { "aria-hidden": "true" } }),
+              _c("span", { attrs: { "aria-hidden": "true" } }),
+              _c("span", { attrs: { "aria-hidden": "true" } })
+            ]
+          )
         ],
         1
       ),
       _c(
         "div",
-        { staticClass: "navbar-menu", attrs: { id: "navbarContent" } },
+        {
+          staticClass: "navbar-menu",
+          class: { "is-active": _vm.isNavbarOpen },
+          attrs: { id: "navbarContent" }
+        },
         [
           _c(
             "div",
@@ -15037,7 +15061,7 @@ exports.default = _default;
                         staticClass: "navbar-item",
                         attrs: { to: "/profile/" + _vm.session.id }
                       },
-                      [_vm._v("Add Bot")]
+                      [_vm._v(_vm._s(_vm.session._username))]
                     )
                   ]
                 : _vm._e(),
@@ -15061,30 +15085,7 @@ exports.default = _default;
     ]
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass: "navbar-burger",
-        attrs: {
-          role: "button",
-          "aria-expanded": "false",
-          "data-target": "navbarContent",
-          id: "openNavbar"
-        }
-      },
-      [
-        _c("span", { attrs: { "aria-hidden": "true" } }),
-        _c("span", { attrs: { "aria-hidden": "true" } }),
-        _c("span", { attrs: { "aria-hidden": "true" } })
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
           return {
