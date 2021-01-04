@@ -11,6 +11,7 @@
         div(class="navbar-menu", :class="{'is-active': isNavbarOpen}" id="navbarContent")
             div(class="navbar-end")
                 template(v-if="isLoggedIn")
+                    a(class="navbar-item", href="/switch_theme") {{darkMode ? "Dark" : "Light"}}
                     //- if session.permissions.moderator
                     //-     a(class="navbar-item", href=`/admin`) Admin
 
@@ -29,7 +30,8 @@
         name: "Navbar",
         data() {
             return {
-                isNavbarOpen: false
+                isNavbarOpen: false,
+                darkMode: window.darkMode
             }
         },
         computed: mapState(["session", "isLoggedIn"])

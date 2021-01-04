@@ -18,6 +18,10 @@ html {
     text-decoration: none !important;
 }
 
+.navbar .navbar-menu {
+    background: #121212;
+}
+
 .card {
     background: #2F2F2F;
 }
