@@ -10,7 +10,7 @@
 
         div(class="navbar-menu", :class="{'is-active': isNavbarOpen}" id="navbarContent")
             div(class="navbar-end")
-                a(class="navbar-item", href="/switch_theme") {{darkMode ? "Light" : "Dark"}}
+                a(class="navbar-item", @click="switchTheme") {{darkMode ? "Light" : "Dark"}}
                 
                 template(v-if="isLoggedIn")
                     //- if session.permissions.moderator
@@ -25,6 +25,7 @@
 
 <script>
     import Vue from "vue";
+    import Axios from "axios";
     import {mapState} from "vuex";
 
     export default Vue.extend({
@@ -33,6 +34,13 @@
             return {
                 isNavbarOpen: false,
                 darkMode: window.darkMode
+            }
+        },
+        methods: {
+            switchTheme() {
+                Axios.get("/switch_theme").then(() => {
+                    window.location.reload();
+                });
             }
         },
         computed: mapState(["session", "isLoggedIn"])

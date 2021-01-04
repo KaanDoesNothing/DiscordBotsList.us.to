@@ -14953,6 +14953,8 @@ exports.default = void 0;
 
 var _vue = _interopRequireDefault(require("vue"));
 
+var _axios = _interopRequireDefault(require("axios"));
+
 var _vuex = require("vuex");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -14989,6 +14991,13 @@ var _default = _vue.default.extend({
       isNavbarOpen: false,
       darkMode: window.darkMode
     };
+  },
+  methods: {
+    switchTheme: function switchTheme() {
+      _axios.default.get("/switch_theme").then(function () {
+        window.location.reload();
+      });
+    }
   },
   computed: (0, _vuex.mapState)(["session", "isLoggedIn"])
 });
@@ -15052,10 +15061,7 @@ exports.default = _default;
             [
               _c(
                 "a",
-                {
-                  staticClass: "navbar-item",
-                  attrs: { href: "/switch_theme" }
-                },
+                { staticClass: "navbar-item", on: { click: _vm.switchTheme } },
                 [_vm._v(_vm._s(_vm.darkMode ? "Light" : "Dark"))]
               ),
               _vm.isLoggedIn
@@ -15124,7 +15130,7 @@ render._withStripped = true
         
       }
     })();
-},{"vue":"../../../node_modules/vue/dist/vue.runtime.esm.js","vuex":"../../../node_modules/vuex/dist/vuex.esm.js","vue-hot-reload-api":"../../../node_modules/vue-hot-reload-api/dist/index.js"}],"../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"vue":"../../../node_modules/vue/dist/vue.runtime.esm.js","axios":"../../../node_modules/axios/index.js","vuex":"../../../node_modules/vuex/dist/vuex.esm.js","vue-hot-reload-api":"../../../node_modules/vue-hot-reload-api/dist/index.js"}],"../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
