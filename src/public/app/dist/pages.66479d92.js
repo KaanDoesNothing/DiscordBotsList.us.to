@@ -148,6 +148,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
 var _default = {
   data: function data() {
     return {
@@ -208,7 +209,7 @@ exports.default = _default;
                     ])
                   ]),
                   _c("div", { staticClass: "content" }, [
-                    _vm._v(_vm._s(bot.short_description))
+                    _c("label", [_vm._v(_vm._s(bot.short_description))])
                   ]),
                   _c(
                     "footer",
@@ -303,7 +304,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49216" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51521" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

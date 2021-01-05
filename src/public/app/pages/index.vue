@@ -9,7 +9,8 @@
                     div(class="media-content")
                         p(class="title is-4") {{bot.user.username}}
                     
-                    div(class="content") {{bot.short_description}}
+                    div(class="content") 
+                        label {{bot.short_description}}
                     
                     footer(class="card-footer")
                         router-link(class="card-footer-item" v-bind:to="'/bot/' + bot.bot_id") View
