@@ -4,19 +4,19 @@ const config = require("../config");
 let sendBotAdded = (owner_id, bot_id) => {
     let channel = client.channels.cache.get(config.channels.botLogs);
 
-    channel.send(`<@&${config.roles[1]}>, <@${owner_id}> has added <@${bot_id}>`);
+    channel.send(`<@&${config.roles[1]}>, <@${owner_id}> has added <@${bot_id}>.`);
 }
 
 let sendBotAccepted = (moderator_id, bot_id) => {
     let channel = client.channels.cache.get(config.channels.botLogs);
 
-    channel.send(`<@${bot_id}> Has been verified by <@${moderator_id}>`);
+    channel.send(`<@${bot_id}> has been verified by <@${moderator_id}>.`);
 }
 
 let sendBotDeclined = (moderator_id, bot_id) => {
     let channel = client.channels.cache.get(config.channels.botLogs);
 
-    channel.send(`<@${bot_id}> Has been declined by <@${moderator_id}>`);
+    channel.send(`<@${bot_id}> has been declined by <@${moderator_id}>.`);
 }
 
 module.exports.sendBotAdded = sendBotAdded;
