@@ -2,12 +2,13 @@ import Vue from "vue";
 import Axios from "axios";
 import vueRouter from "vue-router";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
+import { faThumbsUp, faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 import App from "./App.vue";
 
 library.add(faThumbsUp);
+// library.add(faThumbsDown);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 

@@ -33,7 +33,6 @@
         methods: {
             fetchBots() {
                 Axios.get("/api/bots/all/json").then(res => {
-                    console.log(res.data);
                     this.bots = res.data.bots;
                 })
             }

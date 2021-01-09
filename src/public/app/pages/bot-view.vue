@@ -10,6 +10,8 @@
                         template(v-if="isLoggedIn")
                             a(@click="like")
                                 font-awesome-icon(icon="thumbs-up")
+                            //- a(@click="unlike" v-if="didLike")
+                                //- font-awesome-icon(icon="thumbs-down")
 
                     br
                     
@@ -90,6 +92,7 @@
 <script>
     import {mapState} from "vuex";
     import Axios from "axios";
+    import alert from "../alert.js";
 
     export default {
         data() {
@@ -100,7 +103,8 @@
                 lastError: "",
                 stats: {},
                 bot_id: "",
-                likeCount: 0
+                likeCount: 0,
+                likes: []
             }
         },
         mounted() {
@@ -130,6 +134,7 @@
             fetchLikes() {
                 Axios.get(`/api/bot/likes/${this.bot_id}`).then(res => {
                     this.likeCount = res.data.likes.length;
+                    this.likes = res.data.likes;
                 });
             },
             postComment() {
@@ -145,7 +150,12 @@
             },
             like() {
                 Axios.post(`/api/bot/likes/${this.bot_id}`).then((res) => {
-                    console.log(res.data);
+                    if(res.data.msg) {
+                        alert(res.data.msg);
+                    }else {
+                        alert(res.data.error, "error");
+                    }
+                    // console.log(res.data);
                     this.fetchLikes();
                 });
             }
@@ -154,6 +164,9 @@
             hasPermissions() {
                 // console.log(this.session && this.bot ? this.session._id === this.bot_id : false)
                 return this.session && this.bot ? this.session._id === this.bot.owner_id : false;
+            },
+            didLike() {
+                return this.likes.filter(like => like.author_id === this.session._id)[0];
             },
             ...mapState(["session", "isLoggedIn"])
         }

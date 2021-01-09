@@ -129,6 +129,8 @@ var _vuex = require("vuex");
 
 var _axios = _interopRequireDefault(require("axios"));
 
+var _alert = _interopRequireDefault(require("../alert.js"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -146,7 +148,8 @@ var _default = {
       lastError: "",
       stats: {},
       bot_id: "",
-      likeCount: 0
+      likeCount: 0,
+      likes: []
     };
   },
   mounted: function mounted() {
@@ -183,6 +186,7 @@ var _default = {
 
       _axios.default.get("/api/bot/likes/".concat(this.bot_id)).then(function (res) {
         _this4.likeCount = res.data.likes.length;
+        _this4.likes = res.data.likes;
       });
     },
     postComment: function postComment() {
@@ -205,7 +209,12 @@ var _default = {
       var _this6 = this;
 
       _axios.default.post("/api/bot/likes/".concat(this.bot_id)).then(function (res) {
-        console.log(res.data);
+        if (res.data.msg) {
+          (0, _alert.default)(res.data.msg);
+        } else {
+          (0, _alert.default)(res.data.error, "error");
+        } // console.log(res.data);
+
 
         _this6.fetchLikes();
       });
@@ -215,6 +224,13 @@ var _default = {
     hasPermissions: function hasPermissions() {
       // console.log(this.session && this.bot ? this.session._id === this.bot_id : false)
       return this.session && this.bot ? this.session._id === this.bot.owner_id : false;
+    },
+    didLike: function didLike() {
+      var _this7 = this;
+
+      return this.likes.filter(function (like) {
+        return like.author_id === _this7.session._id;
+      })[0];
     }
   }, (0, _vuex.mapState)(["session", "isLoggedIn"]))
 };
@@ -520,7 +536,7 @@ render._withStripped = true
       
       }
     })();
-},{"vuex":"../../../node_modules/vuex/dist/vuex.esm.js","axios":"../../../node_modules/axios/index.js","_css_loader":"../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/css-loader.js","vue-hot-reload-api":"../../../node_modules/vue-hot-reload-api/dist/index.js","vue":"../../../node_modules/vue/dist/vue.runtime.esm.js"}],"../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"vuex":"../../../node_modules/vuex/dist/vuex.esm.js","axios":"../../../node_modules/axios/index.js","../alert.js":"alert.js","_css_loader":"../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/css-loader.js","vue-hot-reload-api":"../../../node_modules/vue-hot-reload-api/dist/index.js","vue":"../../../node_modules/vue/dist/vue.runtime.esm.js"}],"../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -548,7 +564,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62521" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55443" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

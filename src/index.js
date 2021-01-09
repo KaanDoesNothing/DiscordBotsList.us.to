@@ -47,7 +47,7 @@ app.use("/bot/:id", async (req, res) => {
     const bot = await db.get("bots").findOne({bot_id: req.params.id});
     const finalBot = await fixBot(bot);
 
-    return res.render("bot", {client, bot: finalBot});
+    return res.render("bot-view", {client, bot: finalBot});
 });
 
 app.use((req, res) => {
