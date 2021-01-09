@@ -15,7 +15,7 @@
 
                     br
 
-                    div(class="field is-grouped" style="justify-content: center;")
+                    div(class="field is-grouped")
                         div(class="control")
                             br
                             span(class="tag tag-first") Owner
