@@ -1,0 +1,8 @@
+extends layouts/main
+
+block head
+    meta(property="og:site_name", content="Discord Bots")
+    meta(property="og:title", content=bot.user.username)
+    meta(property="og:description", content=`View ${bot.user.username} - ${bot.short_description}`)
+    meta(property="og:image", content=bot.user.displayAvatarURL())
+    meta(name="theme-color", content="#000000")

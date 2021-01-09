@@ -3,7 +3,8 @@ const session = require("express-session");
 
 const config = require("./config");
 const client = require("./client");
-const {fixUserPermissions} = require("./utils");
+const db = require("./db");
+const {fixUserPermissions, fixBot} = require("./utils");
 const app = express();
 
 app.use(express.json({extended: true}));
@@ -42,8 +43,15 @@ app.use((req, res, next) => {
 app.use("/auth", require("./routes/auth"));
 app.use("/api", require("./routes/api/index"));
 
+app.use("/bot/:id", async (req, res) => {
+    const bot = await db.get("bots").findOne({bot_id: req.params.id});
+    const finalBot = await fixBot(bot);
+
+    return res.render("bot", {client, bot: finalBot});
+});
+
 app.use((req, res) => {
-    return res.render("client", {client});
+    return res.render("main", {client});
 });
 
 app.listen(config.website.port || 4000);
