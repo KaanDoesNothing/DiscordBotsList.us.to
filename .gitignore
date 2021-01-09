@@ -1,7 +1,8 @@
 node_modules/
 package-lock.json
 src/public/app/.cache
-src/public/app/dist/
 src/public/bundle/.cache
 src/config.js
 src/.views/
+
+src/public/app/dist/
