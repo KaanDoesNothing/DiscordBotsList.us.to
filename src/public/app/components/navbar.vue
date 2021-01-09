@@ -39,13 +39,7 @@
             switchTheme() {
                 let darkmode = this.$store.state.darkmode;
 
-                // console.log(darkmode, !darkmode);
-
-                if(darkmode === false) {
-                    this.$store.commit("setDarkMode", true);
-                }else {
-                    this.$store.commit("setDarkMode", false);
-                }
+                this.$store.commit("setDarkMode", !darkmode);
             }
         },
         computed: mapState(["session", "isLoggedIn", "darkmode"])

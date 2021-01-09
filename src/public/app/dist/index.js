@@ -25116,13 +25116,8 @@ var _default = _vue.default.extend({
   },
   methods: {
     switchTheme: function switchTheme() {
-      var darkmode = this.$store.state.darkmode; // console.log(darkmode, !darkmode);
-
-      if (darkmode === false) {
-        this.$store.commit("setDarkMode", true);
-      } else {
-        this.$store.commit("setDarkMode", false);
-      }
+      var darkmode = this.$store.state.darkmode;
+      this.$store.commit("setDarkMode", !darkmode);
     }
   },
   computed: (0, _vuex.mapState)(["session", "isLoggedIn", "darkmode"])
@@ -25609,7 +25604,6 @@ var _store = _interopRequireDefault(require("./store"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// import darkMode from "./darkmode.js";
 _fontawesomeSvgCore.library.add(_freeSolidSvgIcons.faThumbsUp);
 
 _vue.default.component("font-awesome-icon", _vueFontawesome.FontAwesomeIcon);
