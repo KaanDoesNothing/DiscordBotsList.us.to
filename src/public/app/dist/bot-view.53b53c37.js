@@ -318,48 +318,41 @@ exports.default = _default;
               ]
             ),
             _vm.stats
-              ? _c(
-                  "div",
-                  {
-                    staticClass: "field is-grouped",
-                    staticStyle: { "justify-content": "center" }
-                  },
-                  [
-                    _vm.stats.guilds
-                      ? _c("div", { staticClass: "control" }, [
-                          _c("br"),
-                          _c("span", { staticClass: "tag tag-first" }, [
-                            _vm._v("Guilds")
-                          ]),
-                          _c("a", { staticClass: "tag tag-second is-info" }, [
-                            _vm._v(_vm._s(_vm.stats.guilds))
-                          ])
+              ? _c("div", { staticClass: "field is-grouped" }, [
+                  _vm.stats.guilds
+                    ? _c("div", { staticClass: "control" }, [
+                        _c("br"),
+                        _c("span", { staticClass: "tag tag-first" }, [
+                          _vm._v("Guilds")
+                        ]),
+                        _c("a", { staticClass: "tag tag-second is-info" }, [
+                          _vm._v(_vm._s(_vm.stats.guilds))
                         ])
-                      : _vm._e(),
-                    _vm.stats.channels
-                      ? _c("div", { staticClass: "control" }, [
-                          _c("br"),
-                          _c("span", { staticClass: "tag tag-first" }, [
-                            _vm._v("Channels")
-                          ]),
-                          _c("a", { staticClass: "tag tag-second is-info" }, [
-                            _vm._v(_vm._s(_vm.stats.channels))
-                          ])
+                      ])
+                    : _vm._e(),
+                  _vm.stats.channels
+                    ? _c("div", { staticClass: "control" }, [
+                        _c("br"),
+                        _c("span", { staticClass: "tag tag-first" }, [
+                          _vm._v("Channels")
+                        ]),
+                        _c("a", { staticClass: "tag tag-second is-info" }, [
+                          _vm._v(_vm._s(_vm.stats.channels))
                         ])
-                      : _vm._e(),
-                    _vm.stats.users
-                      ? _c("div", { staticClass: "control" }, [
-                          _c("br"),
-                          _c("span", { staticClass: "tag tag-first" }, [
-                            _vm._v("users")
-                          ]),
-                          _c("a", { staticClass: "tag tag-second is-info" }, [
-                            _vm._v(_vm._s(_vm.stats.users))
-                          ])
+                      ])
+                    : _vm._e(),
+                  _vm.stats.users
+                    ? _c("div", { staticClass: "control" }, [
+                        _c("br"),
+                        _c("span", { staticClass: "tag tag-first" }, [
+                          _vm._v("users")
+                        ]),
+                        _c("a", { staticClass: "tag tag-second is-info" }, [
+                          _vm._v(_vm._s(_vm.stats.users))
                         ])
-                      : _vm._e()
-                  ]
-                )
+                      ])
+                    : _vm._e()
+                ])
               : _vm._e(),
             _c("div", { staticClass: "control" }, [
               _c("br"),
@@ -577,7 +570,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49208" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62492" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

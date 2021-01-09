@@ -32,7 +32,7 @@
                             span(class="tag tag-first") Prefix
                             a(class="tag is-info tag-second") {{bot.prefix}}
 
-                    div(v-if="stats" class="field is-grouped" style="justify-content: center;")
+                    div(v-if="stats" class="field is-grouped")
                         div(class="control" v-if="stats.guilds")
                             br
                             span(class="tag tag-first") Guilds
@@ -219,5 +219,9 @@
     .tag-second {
         border-top-left-radius: 0px !important;
         border-bottom-left-radius: 0px !important;
+    }
+
+    .is-grouped {
+        justify-content: center !important;
     }
 </style>
