@@ -4,5 +4,4 @@ src/public/app/.cache
 src/public/bundle/.cache
 src/config.js
 src/.views/
-
 src/public/app/dist/
