@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "update": "git pull && cd src/public/app && parcel build index.js && pm2 restart DiscordBotsList"
   },
   "keywords": [],
   "author": "",
