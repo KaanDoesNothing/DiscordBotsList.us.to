@@ -3,4 +3,4 @@ package-lock.json
 src/public/app/.cache
 src/public/bundle/.cache
 src/config.js
-src/views_old/
+src/.views/
