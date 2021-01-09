@@ -42,12 +42,6 @@ app.use((req, res, next) => {
 app.use("/auth", require("./routes/auth"));
 app.use("/api", require("./routes/api/index"));
 
-app.get("/switch_theme", async (req, res) => {
-    req.session.darkMode = !req.session.darkMode;
-    req.session.save();
-    res.redirect("/");
-});
-
 app.use((req, res) => {
     return res.render("client", {client});
 });

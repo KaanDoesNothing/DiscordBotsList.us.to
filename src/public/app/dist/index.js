@@ -25111,18 +25111,21 @@ var _default = _vue.default.extend({
   name: "Navbar",
   data: function data() {
     return {
-      isNavbarOpen: false,
-      darkMode: window.darkMode
+      isNavbarOpen: false
     };
   },
   methods: {
     switchTheme: function switchTheme() {
-      _axios.default.get("/switch_theme").then(function () {
-        window.location.reload();
-      });
+      var darkmode = this.$store.state.darkmode; // console.log(darkmode, !darkmode);
+
+      if (darkmode === false) {
+        this.$store.commit("setDarkMode", true);
+      } else {
+        this.$store.commit("setDarkMode", false);
+      }
     }
   },
-  computed: (0, _vuex.mapState)(["session", "isLoggedIn"])
+  computed: (0, _vuex.mapState)(["session", "isLoggedIn", "darkmode"])
 });
 
 exports.default = _default;
@@ -25185,7 +25188,7 @@ exports.default = _default;
               _c(
                 "a",
                 { staticClass: "navbar-item", on: { click: _vm.switchTheme } },
-                [_vm._v(_vm._s(_vm.darkMode ? "Light" : "Dark"))]
+                [_vm._v(_vm._s(_vm.darkmode ? "Light" : "Dark"))]
               ),
               _vm.isLoggedIn
                 ? [
@@ -25343,6 +25346,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var _default = _vue.default.extend({
   components: {
     Navbar: _navbar.default
+  },
+  mounted: function mounted() {
+    var darkModeEnabled = localStorage.getItem("darkmode");
+    if (darkModeEnabled === null) darkModeEnabled = false;
+    var enabled = darkModeEnabled === "true" ? true : false;
+    console.log(enabled);
+    this.$store.commit("setDarkMode", enabled);
   }
 });
 
@@ -25545,7 +25555,31 @@ _vue.default.use(_vuex.default);
 var store = new _vuex.default.Store({
   state: {
     session: window._session,
-    isLoggedIn: window._isLoggedIn
+    isLoggedIn: window._isLoggedIn,
+    darkmode: false
+  },
+  mutations: {
+    setDarkMode: function setDarkMode(ctx, val) {
+      var link = document.getElementById("darkmode");
+      link.disabled = !val;
+      ctx.darkmode = val;
+      localStorage.setItem("darkmode", val); // if(val === true) {
+      //   let head = document.getElementsByTagName("HEAD")[0];
+      //   let link = document.createElement("link");
+      //   link.rel = "stylesheet";
+      //   link.type = "text/css";
+      //   link.href = "/static/css/darkmode.css";
+      //   link.id = "darkmode";
+      //   head.appendChild(link);
+      //   localStorage.setItem("darkmode", true);
+      //   ctx.darkmode = true;
+      // }else if(val === false) {
+      //   let link = document.getElementById("darkmode");
+      //   link.parentNode.removeChild(link);
+      //   localStorage.setItem("darkmode", false);
+      //   ctx.darkmode = false;
+      // }
+    }
   }
 });
 var _default = store;
@@ -25575,6 +25609,7 @@ var _store = _interopRequireDefault(require("./store"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// import darkMode from "./darkmode.js";
 _fontawesomeSvgCore.library.add(_freeSolidSvgIcons.faThumbsUp);
 
 _vue.default.component("font-awesome-icon", _vueFontawesome.FontAwesomeIcon);
@@ -25617,7 +25652,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62956" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62521" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

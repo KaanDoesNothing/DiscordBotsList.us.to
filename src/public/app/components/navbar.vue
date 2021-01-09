@@ -10,7 +10,7 @@
 
         div(class="navbar-menu", :class="{'is-active': isNavbarOpen}" id="navbarContent")
             div(class="navbar-end")
-                a(class="navbar-item", @click="switchTheme") {{darkMode ? "Light" : "Dark"}}
+                a(class="navbar-item", @click="switchTheme") {{darkmode ? "Light" : "Dark"}}
                 
                 template(v-if="isLoggedIn")
                     //- if session.permissions.moderator
@@ -32,17 +32,22 @@
         name: "Navbar",
         data() {
             return {
-                isNavbarOpen: false,
-                darkMode: window.darkMode
+                isNavbarOpen: false
             }
         },
         methods: {
             switchTheme() {
-                Axios.get("/switch_theme").then(() => {
-                    window.location.reload();
-                });
+                let darkmode = this.$store.state.darkmode;
+
+                // console.log(darkmode, !darkmode);
+
+                if(darkmode === false) {
+                    this.$store.commit("setDarkMode", true);
+                }else {
+                    this.$store.commit("setDarkMode", false);
+                }
             }
         },
-        computed: mapState(["session", "isLoggedIn"])
+        computed: mapState(["session", "isLoggedIn", "darkmode"])
     });
 </script>

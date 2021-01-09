@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 import App from "./App.vue";
 
+// import darkMode from "./darkmode.js";
+
 library.add(faThumbsUp);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);

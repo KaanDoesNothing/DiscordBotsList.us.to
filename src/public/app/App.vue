@@ -11,6 +11,17 @@
     export default Vue.extend({
         components: {
             Navbar
+        },
+        mounted() {
+            let darkModeEnabled = localStorage.getItem("darkmode");
+
+            if(darkModeEnabled === null) darkModeEnabled = false;
+
+            let enabled = darkModeEnabled === "true" ? true : false;
+
+            console.log(enabled);
+
+            this.$store.commit("setDarkMode", enabled);
         }
     });
 </script>
