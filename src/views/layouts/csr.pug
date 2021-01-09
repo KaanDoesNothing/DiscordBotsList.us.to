@@ -9,35 +9,7 @@ html(lang="en")
         
         title Discord Bots
 
-        script.
-            window._isLoggedIn = #{session ? "true" : "false"}
-            window.darkMode = #{darkMode ? "true" : "false"}
-
-        if session
-            script.
-                window._session = !{JSON.stringify(session)}
-
-        link(rel="stylesheet", type="text/css", href="/static/css/darkmode.css" id="darkmode")
-
-        //- script.
-            //- document.getElementById("darkmode").disabled = true;
-
-        //- if darkMode
-            //- link(rel="stylesheet", type="text/css", href="/static/css/darkmode.css")
-
-        script.
-            //- (async () => {
-            //-     let lastTheme = localStorage.getItem("darkMode");
-            //-     let currentTheme = #{darkMode};
-
-            //-     if(lastTheme !== currentTheme) {
-            //-         fetch("/switch_theme").then(() => {
-            //-             window.location.reload();
-            //-         });
-            //-     }
-            //- })();
-
-        link(rel="stylesheet", type="text/css", href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css")        
+        link(rel="stylesheet", type="text/css", href="/static/css/darkmode.css" id="darkmode")   
     body
         block content
 

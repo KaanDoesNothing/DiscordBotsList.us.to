@@ -1,5 +1,6 @@
 const express = require("express");
 const authClient = require("../modules/authClient");
+const {fixUserPermissions} = require("../utils");
 
 const app = express.Router();
 
@@ -26,7 +27,17 @@ app.get("/login", (req, res) => {
 });
 
 app.get("/session", (req, res) => {
-    return res.json(req.session.user);
+    let user = req.session.user;
+
+    if(user) {
+        user = user;
+
+       user.permissions = fixUserPermissions(user._id);
+
+       return res.json({session: user});
+    }else {
+        return res.json({error: "Not logged in."});
+    }
 });
 
 module.exports = app;

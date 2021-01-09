@@ -23880,6 +23880,7 @@ var _default = _vue.default.extend({
     if (darkModeEnabled === null) darkModeEnabled = false;
     var enabled = darkModeEnabled === "true" ? true : false;
     this.$store.commit("setDarkMode", enabled);
+    this.$store.dispatch("fetchSession");
   }
 });
 
@@ -23931,12 +23932,7 @@ render._withStripped = true
       
       }
     })();
-},{"vue":"../../../node_modules/vue/dist/vue.runtime.esm.js","_bundle_loader":"../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/bundle-loader.js","./components/navbar.vue":[["navbar.16724829.js","components/navbar.vue"],"navbar.16724829.js.map","components/navbar.vue"],"_css_loader":"../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/css-loader.js","vue-hot-reload-api":"../../../node_modules/vue-hot-reload-api/dist/index.js"}],"scss/index.scss":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/css-loader.js"}],"router.js":[function(require,module,exports) {
+},{"vue":"../../../node_modules/vue/dist/vue.runtime.esm.js","_bundle_loader":"../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/bundle-loader.js","./components/navbar.vue":[["navbar.16724829.js","components/navbar.vue"],"navbar.16724829.js.map","components/navbar.vue"],"_css_loader":"../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/css-loader.js","vue-hot-reload-api":"../../../node_modules/vue-hot-reload-api/dist/index.js"}],"router.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -23980,7 +23976,7 @@ var router = new _vueRouter.default({
 });
 var _default = router;
 exports.default = _default;
-},{"vue-router":"../../../node_modules/vue-router/dist/vue-router.esm.js","_bundle_loader":"../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/bundle-loader.js","./pages/index.vue":[["pages.66479d92.js","pages/index.vue"],"pages.66479d92.js.map","pages.66479d92.css","pages/index.vue"],"./pages/bot-view.vue":[["bot-view.53b53c37.js","pages/bot-view.vue"],"bot-view.53b53c37.js.map","bot-view.53b53c37.css","pages/bot-view.vue"],"./pages/bot-edit.vue":[["bot-edit.23069ead.js","pages/bot-edit.vue"],"bot-edit.23069ead.js.map","pages/bot-edit.vue"],"./pages/add.vue":[["add.1dffd732.js","pages/add.vue"],"add.1dffd732.js.map","pages/add.vue"],"./pages/404.vue":[["404.cc2eb4dd.js","pages/404.vue"],"404.cc2eb4dd.js.map","pages/404.vue"]}],"../../../node_modules/vuex/dist/vuex.esm.js":[function(require,module,exports) {
+},{"vue-router":"../../../node_modules/vue-router/dist/vue-router.esm.js","_bundle_loader":"../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/bundle-loader.js","./pages/index.vue":[["pages.66479d92.js","pages/index.vue"],"pages.66479d92.js.map","pages.66479d92.css","pages/index.vue"],"./pages/bot-view.vue":[["bot-view.53b53c37.js","pages/bot-view.vue"],"bot-view.53b53c37.js.map","bot-view.53b53c37.css","pages/bot-view.vue"],"./pages/bot-edit.vue":[["bot-edit.23069ead.js","pages/bot-edit.vue"],"bot-edit.23069ead.js.map","pages/bot-edit.vue"],"./pages/add.vue":[["add.1dffd732.js","pages/add.vue"],"add.1dffd732.js.map","pages/add.vue"],"./pages/404.vue":[["404.cc2eb4dd.js","pages/404.vue"],"pages/404.vue"]}],"../../../node_modules/vuex/dist/vuex.esm.js":[function(require,module,exports) {
 var global = arguments[3];
 "use strict";
 
@@ -25359,43 +25355,43 @@ var _vue = _interopRequireDefault(require("vue"));
 
 var _vuex = _interopRequireDefault(require("vuex"));
 
+var _axios = _interopRequireDefault(require("axios"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _vue.default.use(_vuex.default);
 
 var store = new _vuex.default.Store({
   state: {
-    session: window._session,
-    isLoggedIn: window._isLoggedIn,
+    session: undefined,
+    isLoggedIn: false,
     darkmode: false
   },
   mutations: {
+    setSession: function setSession(ctx, data) {
+      ctx.session = data;
+      ctx.isLoggedIn = true;
+    },
     setDarkMode: function setDarkMode(ctx, val) {
       var link = document.getElementById("darkmode");
       link.disabled = !val;
       ctx.darkmode = val;
-      localStorage.setItem("darkmode", val); // if(val === true) {
-      //   let head = document.getElementsByTagName("HEAD")[0];
-      //   let link = document.createElement("link");
-      //   link.rel = "stylesheet";
-      //   link.type = "text/css";
-      //   link.href = "/static/css/darkmode.css";
-      //   link.id = "darkmode";
-      //   head.appendChild(link);
-      //   localStorage.setItem("darkmode", true);
-      //   ctx.darkmode = true;
-      // }else if(val === false) {
-      //   let link = document.getElementById("darkmode");
-      //   link.parentNode.removeChild(link);
-      //   localStorage.setItem("darkmode", false);
-      //   ctx.darkmode = false;
-      // }
+      localStorage.setItem("darkmode", val);
+    }
+  },
+  actions: {
+    fetchSession: function fetchSession(ctx) {
+      _axios.default.get("/auth/session").then(function (res) {
+        if (res.data.session) {
+          ctx.commit("setSession", res.data.session);
+        }
+      });
     }
   }
 });
 var _default = store;
 exports.default = _default;
-},{"vue":"../../../node_modules/vue/dist/vue.runtime.esm.js","vuex":"../../../node_modules/vuex/dist/vuex.esm.js"}],"index.js":[function(require,module,exports) {
+},{"vue":"../../../node_modules/vue/dist/vue.runtime.esm.js","vuex":"../../../node_modules/vuex/dist/vuex.esm.js","axios":"../../../node_modules/axios/index.js"}],"app.js":[function(require,module,exports) {
 "use strict";
 
 var _vue = _interopRequireDefault(require("vue"));
@@ -25411,8 +25407,6 @@ var _freeSolidSvgIcons = require("@fortawesome/free-solid-svg-icons");
 var _vueFontawesome = require("@fortawesome/vue-fontawesome");
 
 var _App = _interopRequireDefault(require("./App.vue"));
-
-require("./scss/index.scss");
 
 var _router = _interopRequireDefault(require("./router"));
 
@@ -25434,7 +25428,25 @@ new _vue.default({
   },
   axios: _axios.default
 }).$mount("#app");
-},{"vue":"../../../node_modules/vue/dist/vue.runtime.esm.js","axios":"../../../node_modules/axios/index.js","vue-router":"../../../node_modules/vue-router/dist/vue-router.esm.js","@fortawesome/fontawesome-svg-core":"../../../node_modules/@fortawesome/fontawesome-svg-core/index.es.js","@fortawesome/free-solid-svg-icons":"../../../node_modules/@fortawesome/free-solid-svg-icons/index.es.js","@fortawesome/vue-fontawesome":"../../../node_modules/@fortawesome/vue-fontawesome/index.es.js","./App.vue":"App.vue","./scss/index.scss":"scss/index.scss","./router":"router.js","./store":"store.js"}],"../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"vue":"../../../node_modules/vue/dist/vue.runtime.esm.js","axios":"../../../node_modules/axios/index.js","vue-router":"../../../node_modules/vue-router/dist/vue-router.esm.js","@fortawesome/fontawesome-svg-core":"../../../node_modules/@fortawesome/fontawesome-svg-core/index.es.js","@fortawesome/free-solid-svg-icons":"../../../node_modules/@fortawesome/free-solid-svg-icons/index.es.js","@fortawesome/vue-fontawesome":"../../../node_modules/@fortawesome/vue-fontawesome/index.es.js","./App.vue":"App.vue","./router":"router.js","./store":"store.js"}],"scss/index.scss":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/css-loader.js"}],"../../../node_modules/font-awesome/css/font-awesome.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"./..\\fonts\\fontawesome-webfont.eot":[["fontawesome-webfont.e93907e6.eot","../../../node_modules/font-awesome/fonts/fontawesome-webfont.eot"],"../../../node_modules/font-awesome/fonts/fontawesome-webfont.eot"],"./..\\fonts\\fontawesome-webfont.woff2":[["fontawesome-webfont.6b304721.woff2","../../../node_modules/font-awesome/fonts/fontawesome-webfont.woff2"],"../../../node_modules/font-awesome/fonts/fontawesome-webfont.woff2"],"./..\\fonts\\fontawesome-webfont.woff":[["fontawesome-webfont.61b24e8a.woff","../../../node_modules/font-awesome/fonts/fontawesome-webfont.woff"],"../../../node_modules/font-awesome/fonts/fontawesome-webfont.woff"],"./..\\fonts\\fontawesome-webfont.ttf":[["fontawesome-webfont.16da825d.ttf","../../../node_modules/font-awesome/fonts/fontawesome-webfont.ttf"],"../../../node_modules/font-awesome/fonts/fontawesome-webfont.ttf"],"./..\\fonts\\fontawesome-webfont.svg":[["fontawesome-webfont.b9ab09c0.svg","../../../node_modules/font-awesome/fonts/fontawesome-webfont.svg"],"../../../node_modules/font-awesome/fonts/fontawesome-webfont.svg"],"_css_loader":"../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/css-loader.js"}],"index.js":[function(require,module,exports) {
+"use strict";
+
+require("./app");
+
+require("./scss/index.scss");
+
+require("font-awesome/css/font-awesome.css");
+},{"./app":"app.js","./scss/index.scss":"scss/index.scss","font-awesome/css/font-awesome.css":"../../../node_modules/font-awesome/css/font-awesome.css"}],"../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;

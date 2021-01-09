@@ -20,6 +20,7 @@
             const enabled = darkModeEnabled === "true" ? true : false;
 
             this.$store.commit("setDarkMode", enabled);
+            this.$store.dispatch("fetchSession");
         }
     });
 </script>

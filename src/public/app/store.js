@@ -1,42 +1,35 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import Axios from "axios";
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
     state: {
-      session: window._session,
-      isLoggedIn: window._isLoggedIn,
+      session: undefined,
+      isLoggedIn: false,
       darkmode: false
     },
     mutations: {
+      setSession(ctx, data) {
+        ctx.session = data;
+        ctx.isLoggedIn = true;
+      },
       setDarkMode(ctx, val) {
         let link = document.getElementById("darkmode");
         link.disabled = !val;
         ctx.darkmode = val;
 
         localStorage.setItem("darkmode", val);
-        // if(val === true) {
-        //   let head = document.getElementsByTagName("HEAD")[0];
-
-        //   let link = document.createElement("link");
-        //   link.rel = "stylesheet";
-        //   link.type = "text/css";
-        //   link.href = "/static/css/darkmode.css";
-        //   link.id = "darkmode";
-
-        //   head.appendChild(link);
-
-        //   localStorage.setItem("darkmode", true);
-        //   ctx.darkmode = true;
-        // }else if(val === false) {
-        //   let link = document.getElementById("darkmode");
-
-        //   link.parentNode.removeChild(link);
-
-        //   localStorage.setItem("darkmode", false);
-        //   ctx.darkmode = false;
-        // }
+      }
+    },
+    actions: {
+      fetchSession(ctx) {
+        Axios.get("/auth/session").then(res => {
+          if(res.data.session) {
+            ctx.commit("setSession", res.data.session);
+          }
+        });
       }
     }
 });
