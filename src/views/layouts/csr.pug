@@ -6,8 +6,6 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         
         title Discord Bots
-        
-        link(rel="stylesheet", type="text/css", href="/static/app/dist/index.css")
 
         script.
             window._isLoggedIn = #{session ? "true" : "false"}
@@ -26,4 +24,5 @@ html(lang="en")
 
         div(id="app")
         
+        link(rel="stylesheet", type="text/css", href="/static/app/dist/index.css")
         script(src="/static/app/dist/index.js")

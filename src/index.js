@@ -4,12 +4,7 @@ const cookies = require("cookies");
 
 const config = require("./config");
 const client = require("./client");
-const {fixBot, fixUserPermissions} = require("./utils");
-const {isLoggedIn, isModerator} = require("./modules/middlewares");
-const {botSchema} = require("./schemas");
-const {sendBotAdded} = require("./modules/botActions");
-const db = require("./db");
-
+const {fixUserPermissions} = require("./utils");
 const app = express();
 
 app.use(express.json({extended: true}));
