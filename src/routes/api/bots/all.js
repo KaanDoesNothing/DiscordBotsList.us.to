@@ -11,7 +11,8 @@ app.get("/json", async (req, res) => {
     const bots = await db.get("bots").find({verified: true});
     let finalBots = await Promise.all(bots.map(async bot => {
         let fixedBot = await fixBot(bot);
-        delete fixedBot.api_key
+        delete fixedBot.api_key;
+        delete fixedBot._id;
 
         return fixedBot;
     }));

@@ -221,7 +221,6 @@ var _default = {
   },
   computed: _objectSpread({
     hasPermissions: function hasPermissions() {
-      // console.log(this.session && this.bot ? this.session._id === this.bot_id : false)
       return this.session && this.bot ? this.session._id === this.bot.owner_id : false;
     },
     hasLiked: function hasLiked() {

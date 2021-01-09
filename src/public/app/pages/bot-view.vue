@@ -162,7 +162,6 @@
         },
         computed: {
             hasPermissions() {
-                // console.log(this.session && this.bot ? this.session._id === this.bot_id : false)
                 return this.session && this.bot ? this.session._id === this.bot.owner_id : false;
             },
             hasLiked() {
