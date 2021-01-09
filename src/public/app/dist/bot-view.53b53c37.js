@@ -290,62 +290,76 @@ exports.default = _default;
               2
             ),
             _c("br"),
-            _c("div", { staticClass: "control" }, [
-              _c("br"),
-              _c("span", { staticClass: "tag" }, [_vm._v("Owner")]),
-              _c("a", { staticClass: "tag is-info" }, [
-                _vm._v(_vm._s(_vm.bot.owner.tag))
-              ])
-            ]),
-            _c("div", { staticClass: "control" }, [
-              _c("br"),
-              _c("span", { staticClass: "tag" }, [_vm._v("Verified")]),
-              _vm.bot.verified
-                ? _c("a", { staticClass: "tag is-success" }, [_vm._v("Yes")])
-                : _vm._e(),
-              !_vm.bot.verified
-                ? _c("a", { staticClass: "tag is-danger" }, [_vm._v("No")])
-                : _vm._e()
-            ]),
-            _c("div", { staticClass: "control" }, [
-              _c("br"),
-              _c("span", { staticClass: "tag" }, [_vm._v("Prefix")]),
-              _c("a", { staticClass: "tag is-info" }, [
-                _vm._v(_vm._s(_vm.bot.prefix))
-              ])
-            ]),
-            _vm.stats
-              ? _c("div", [
-                  _vm.stats.guilds
-                    ? _c("div", { staticClass: "control" }, [
-                        _c("br"),
-                        _c("span", { staticClass: "tag" }, [_vm._v("Guilds")]),
-                        _c("a", { staticClass: "tag is-info" }, [
-                          _vm._v(_vm._s(_vm.stats.guilds))
-                        ])
-                      ])
-                    : _vm._e(),
-                  _vm.stats.channels
-                    ? _c("div", { staticClass: "control" }, [
-                        _c("br"),
-                        _c("span", { staticClass: "tag" }, [
-                          _vm._v("Channels")
-                        ]),
-                        _c("a", { staticClass: "tag is-info" }, [
-                          _vm._v(_vm._s(_vm.stats.channels))
-                        ])
-                      ])
-                    : _vm._e(),
-                  _vm.stats.users
-                    ? _c("div", { staticClass: "control" }, [
-                        _c("br"),
-                        _c("span", { staticClass: "tag" }, [_vm._v("users")]),
-                        _c("a", { staticClass: "tag is-info" }, [
-                          _vm._v(_vm._s(_vm.stats.users))
-                        ])
-                      ])
-                    : _vm._e()
+            _c(
+              "div",
+              {
+                staticClass: "field is-grouped",
+                staticStyle: { "justify-content": "center" }
+              },
+              [
+                _c("div", { staticClass: "control" }, [
+                  _c("br"),
+                  _c("span", { staticClass: "tag tag-first" }, [
+                    _vm._v("Owner")
+                  ]),
+                  _c("a", { staticClass: "tag tag-second is-info" }, [
+                    _vm._v(_vm._s(_vm.bot.owner.tag))
+                  ])
+                ]),
+                _c("div", { staticClass: "control" }, [
+                  _c("br"),
+                  _c("span", { staticClass: "tag tag-first" }, [
+                    _vm._v("Prefix")
+                  ]),
+                  _c("a", { staticClass: "tag is-info tag-second" }, [
+                    _vm._v(_vm._s(_vm.bot.prefix))
+                  ])
                 ])
+              ]
+            ),
+            _vm.stats
+              ? _c(
+                  "div",
+                  {
+                    staticClass: "field is-grouped",
+                    staticStyle: { "justify-content": "center" }
+                  },
+                  [
+                    _vm.stats.guilds
+                      ? _c("div", { staticClass: "control" }, [
+                          _c("br"),
+                          _c("span", { staticClass: "tag tag-first" }, [
+                            _vm._v("Guilds")
+                          ]),
+                          _c("a", { staticClass: "tag tag-second is-info" }, [
+                            _vm._v(_vm._s(_vm.stats.guilds))
+                          ])
+                        ])
+                      : _vm._e(),
+                    _vm.stats.channels
+                      ? _c("div", { staticClass: "control" }, [
+                          _c("br"),
+                          _c("span", { staticClass: "tag tag-first" }, [
+                            _vm._v("Channels")
+                          ]),
+                          _c("a", { staticClass: "tag tag-second is-info" }, [
+                            _vm._v(_vm._s(_vm.stats.channels))
+                          ])
+                        ])
+                      : _vm._e(),
+                    _vm.stats.users
+                      ? _c("div", { staticClass: "control" }, [
+                          _c("br"),
+                          _c("span", { staticClass: "tag tag-first" }, [
+                            _vm._v("users")
+                          ]),
+                          _c("a", { staticClass: "tag tag-second is-info" }, [
+                            _vm._v(_vm._s(_vm.stats.users))
+                          ])
+                        ])
+                      : _vm._e()
+                  ]
+                )
               : _vm._e(),
             _c("div", { staticClass: "control" }, [
               _c("br"),

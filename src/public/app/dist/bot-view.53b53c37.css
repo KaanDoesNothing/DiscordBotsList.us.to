@@ -33,3 +33,13 @@
 .liked {
   color: #3298dc !important;
 }
+
+.tag-first {
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}
+
+.tag-second {
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+}

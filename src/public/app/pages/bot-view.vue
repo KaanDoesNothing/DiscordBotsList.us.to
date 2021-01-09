@@ -14,36 +14,37 @@
                                 //- font-awesome-icon(icon="thumbs-down")
 
                     br
-                    
-                    div(class="control")
-                        br
-                        span(class="tag") Owner
-                        a(class="tag is-info") {{bot.owner.tag}}
 
-                    div(class="control")
-                        br
-                        span(class="tag") Verified
-                        a(class="tag is-success" v-if="bot.verified") Yes
-                        a(class="tag is-danger" v-if="!bot.verified") No
+                    div(class="field is-grouped" style="justify-content: center;")
+                        div(class="control")
+                            br
+                            span(class="tag tag-first") Owner
+                            a(class="tag tag-second is-info") {{bot.owner.tag}}
 
-                    div(class="control")
-                        br
-                        span(class="tag") Prefix
-                        a(class="tag is-info") {{bot.prefix}}
+                        //- div(class="control")
+                        //-     br
+                        //-     span(class="tag") Verified
+                        //-     a(class="tag is-success" v-if="bot.verified") Yes
+                        //-     a(class="tag is-danger" v-if="!bot.verified") No
 
-                    div(v-if="stats")
+                        div(class="control")
+                            br
+                            span(class="tag tag-first") Prefix
+                            a(class="tag is-info tag-second") {{bot.prefix}}
+
+                    div(v-if="stats" class="field is-grouped" style="justify-content: center;")
                         div(class="control" v-if="stats.guilds")
                             br
-                            span(class="tag") Guilds
-                            a(class="tag is-info") {{stats.guilds}}
+                            span(class="tag tag-first") Guilds
+                            a(class="tag tag-second is-info") {{stats.guilds}}
                         div(class="control" v-if="stats.channels")
                             br
-                            span(class="tag") Channels
-                            a(class="tag is-info") {{stats.channels}}
+                            span(class="tag tag-first") Channels
+                            a(class="tag tag-second is-info") {{stats.channels}}
                         div(class="control" v-if="stats.users")
                             br
-                            span(class="tag") users
-                            a(class="tag is-info") {{stats.users}}
+                            span(class="tag tag-first") users
+                            a(class="tag tag-second is-info") {{stats.users}}
 
                     div(class="control")
                         br
@@ -208,5 +209,15 @@
 
     .liked {
         color: #3298dc !important;
+    }
+
+    .tag-first {
+        border-top-right-radius: 0px !important;
+        border-bottom-right-radius: 0px !important;
+    }
+
+    .tag-second {
+        border-top-left-radius: 0px !important;
+        border-bottom-left-radius: 0px !important;
     }
 </style>
