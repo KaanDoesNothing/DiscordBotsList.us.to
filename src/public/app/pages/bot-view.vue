@@ -179,7 +179,9 @@
     }
 
     #avatar {
-        margin: 1%;
+        margin: 5%;
+        margin-bottom: 1%;
+        border-radius: 50%;
     }
 
     @media (min-width: 768px) {
