@@ -6,7 +6,7 @@
 
 <script>
     import Vue from "vue";
-    import Navbar from "./components/navbar.vue";
+    let Navbar = () => import("./components/navbar.vue");
 
     export default Vue.extend({
         components: {
@@ -17,9 +17,7 @@
 
             if(darkModeEnabled === null) darkModeEnabled = false;
 
-            let enabled = darkModeEnabled === "true" ? true : false;
-
-            console.log(enabled);
+            const enabled = darkModeEnabled === "true" ? true : false;
 
             this.$store.commit("setDarkMode", enabled);
         }
