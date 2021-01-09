@@ -290,33 +290,24 @@ exports.default = _default;
               2
             ),
             _c("br"),
-            _c(
-              "div",
-              {
-                staticClass: "field is-grouped",
-                staticStyle: { "justify-content": "center" }
-              },
-              [
-                _c("div", { staticClass: "control" }, [
-                  _c("br"),
-                  _c("span", { staticClass: "tag tag-first" }, [
-                    _vm._v("Owner")
-                  ]),
-                  _c("a", { staticClass: "tag tag-second is-info" }, [
-                    _vm._v(_vm._s(_vm.bot.owner.tag))
-                  ])
-                ]),
-                _c("div", { staticClass: "control" }, [
-                  _c("br"),
-                  _c("span", { staticClass: "tag tag-first" }, [
-                    _vm._v("Prefix")
-                  ]),
-                  _c("a", { staticClass: "tag is-info tag-second" }, [
-                    _vm._v(_vm._s(_vm.bot.prefix))
-                  ])
+            _c("div", { staticClass: "field is-grouped" }, [
+              _c("div", { staticClass: "control" }, [
+                _c("br"),
+                _c("span", { staticClass: "tag tag-first" }, [_vm._v("Owner")]),
+                _c("a", { staticClass: "tag tag-second is-info" }, [
+                  _vm._v(_vm._s(_vm.bot.owner.tag))
                 ])
-              ]
-            ),
+              ]),
+              _c("div", { staticClass: "control" }, [
+                _c("br"),
+                _c("span", { staticClass: "tag tag-first" }, [
+                  _vm._v("Prefix")
+                ]),
+                _c("a", { staticClass: "tag is-info tag-second" }, [
+                  _vm._v(_vm._s(_vm.bot.prefix))
+                ])
+              ])
+            ]),
             _vm.stats
               ? _c("div", { staticClass: "field is-grouped" }, [
                   _vm.stats.guilds
@@ -570,7 +561,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62634" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63727" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

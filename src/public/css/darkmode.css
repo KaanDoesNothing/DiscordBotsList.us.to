@@ -30,6 +30,6 @@ html {
     background: #2F2F2F;
 }
 
-h1, label, p, strong {
+h1, label, p, strong, a {
     color: #FFFFFF !important;
 }
