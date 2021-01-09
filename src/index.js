@@ -1,6 +1,5 @@
 const express = require("express");
 const session = require("express-session");
-const cookies = require("cookies");
 
 const config = require("./config");
 const client = require("./client");
@@ -15,8 +14,6 @@ app.use(session({
     saveUninitialized: true,
     cookie: { secure: false }
 }));
-
-app.use(cookies.express(["a", "b", "c"]));
 
 app.set("view engine", "pug");
 
