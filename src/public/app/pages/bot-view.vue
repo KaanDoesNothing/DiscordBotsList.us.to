@@ -6,6 +6,10 @@
 
                 div(class="card-content has-text-centered")
                     label(class="title") {{bot.user.username}}
+                        | ({{likeCount}} likes)  
+                        template(v-if="isLoggedIn")
+                            a(@click="like")
+                                font-awesome-icon(icon="thumbs-up")
 
                     br
                     
@@ -46,7 +50,6 @@
                             a(class="button is-dark" :href="bot.website_link") Website
                             //- a(class="button is-dark" v-if="hasPermissions" :href="`/bot/${bot.bot_id}/edit`") Api Key
                             router-link(class="button is-dark" v-if="hasPermissions" :to="`/bot/${bot.bot_id}/edit`") Edit
-
                     br
                     
                     div(class="message has-text-centered")
@@ -96,7 +99,8 @@
                 comment_content: "",
                 lastError: "",
                 stats: {},
-                bot_id: ""
+                bot_id: "",
+                likeCount: 0
             }
         },
         mounted() {
@@ -105,6 +109,7 @@
             this.fetchBot();
             this.fetchComments();
             this.fetchStats();
+            this.fetchLikes();
         },
         methods: {
             fetchBot() {
@@ -122,6 +127,11 @@
                     this.stats = res.data.stats;
                 });
             },
+            fetchLikes() {
+                Axios.get(`/api/bot/likes/${this.bot_id}`).then(res => {
+                    this.likeCount = res.data.likes.length;
+                });
+            },
             postComment() {
                 Axios.post(`/api/bot/comments/${this.bot_id}`, {content: this.comment_content}).then(res => {
                     if(res.data.msg) {
@@ -131,6 +141,12 @@
                     }else {
                         this.lastError = res.data.error;
                     }
+                });
+            },
+            like() {
+                Axios.post(`/api/bot/likes/${this.bot_id}`).then((res) => {
+                    console.log(res.data);
+                    this.fetchLikes();
                 });
             }
         },

@@ -1,9 +1,6 @@
 <template lang="pug">
     div(class="card", style="margin: 10%;", id="addBotForm")
         div(class="card-content")
-            div(class="notification is-danger" v-if="lastError") {{lastError}}
-            div(class="notification is-success" v-if="lastMessage") {{lastMessage}}
-
             div(class="field")
                 label(class="label") Bot ID
                 input(class="input", type="text",  v-model="data.bot_id")
@@ -29,6 +26,8 @@
 <script>
     import Axios from "axios";
 
+    import alert from "../alert";
+
     export default {
         data() {
             return {
@@ -45,13 +44,11 @@
         methods: {
             post() {
                 Axios.post("/api/bot/add", this.data).then(res => {
-                    this.lastError = "";
-                    this.lastMessage = "";
-
-                    if(res.data.error) this.lastError = res.data.error;
-                    if(res.data.msg) this.lastMessage = res.data.msg;
-                    
-                    console.log(res.data);
+                    if(res.data.msg) {
+                        alert(res.data.msg);
+                    }else {
+                        alert(res.data.error, "error");
+                    }
                 });
             }
         }

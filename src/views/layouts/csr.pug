@@ -6,7 +6,7 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Discord Bots
 
-        link(rel="stylesheet", type="text/css", href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.1/css/bulma.min.css")
+        link(rel="stylesheet", type="text/css", href="/static/app/dist/index.css")
 
         script.
             window._isLoggedIn = #{session ? "true" : "false"}
@@ -17,11 +17,12 @@ html(lang="en")
                 window._session = !{JSON.stringify(session)}
 
         if darkMode
-            link(rel="stylesheet", type="text/css", href="/static/css/darkmode.css")        
+            link(rel="stylesheet", type="text/css", href="/static/css/darkmode.css")
+
+        link(rel="stylesheet", type="text/css", href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css")        
     body
         block content
 
         div(id="app")
+        
         script(src="/static/app/dist/index.js")
-
-        link(rel="stylesheet" type="text/css" href="/static/css/layout.css")

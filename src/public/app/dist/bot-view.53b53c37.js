@@ -145,7 +145,8 @@ var _default = {
       comment_content: "",
       lastError: "",
       stats: {},
-      bot_id: ""
+      bot_id: "",
+      likeCount: 0
     };
   },
   mounted: function mounted() {
@@ -153,6 +154,7 @@ var _default = {
     this.fetchBot();
     this.fetchComments();
     this.fetchStats();
+    this.fetchLikes();
   },
   methods: {
     fetchBot: function fetchBot() {
@@ -176,20 +178,36 @@ var _default = {
         _this3.stats = res.data.stats;
       });
     },
-    postComment: function postComment() {
+    fetchLikes: function fetchLikes() {
       var _this4 = this;
+
+      _axios.default.get("/api/bot/likes/".concat(this.bot_id)).then(function (res) {
+        _this4.likeCount = res.data.likes.length;
+      });
+    },
+    postComment: function postComment() {
+      var _this5 = this;
 
       _axios.default.post("/api/bot/comments/".concat(this.bot_id), {
         content: this.comment_content
       }).then(function (res) {
         if (res.data.msg) {
-          _this4.fetchComments();
+          _this5.fetchComments();
 
-          _this4.comment_content = "";
-          _this4.lastError = "";
+          _this5.comment_content = "";
+          _this5.lastError = "";
         } else {
-          _this4.lastError = res.data.error;
+          _this5.lastError = res.data.error;
         }
+      });
+    },
+    like: function like() {
+      var _this6 = this;
+
+      _axios.default.post("/api/bot/likes/".concat(this.bot_id)).then(function (res) {
+        console.log(res.data);
+
+        _this6.fetchLikes();
       });
     }
   },
@@ -229,9 +247,33 @@ exports.default = _default;
             })
           ]),
           _c("div", { staticClass: "card-content has-text-centered" }, [
-            _c("label", { staticClass: "title" }, [
-              _vm._v(_vm._s(_vm.bot.user.username))
-            ]),
+            _c(
+              "label",
+              { staticClass: "title" },
+              [
+                _vm._v(
+                  _vm._s(_vm.bot.user.username) +
+                    "(" +
+                    _vm._s(_vm.likeCount) +
+                    " likes)  "
+                ),
+                _vm.isLoggedIn
+                  ? [
+                      _c(
+                        "a",
+                        { on: { click: _vm.like } },
+                        [
+                          _c("font-awesome-icon", {
+                            attrs: { icon: "thumbs-up" }
+                          })
+                        ],
+                        1
+                      )
+                    ]
+                  : _vm._e()
+              ],
+              2
+            ),
             _c("br"),
             _c("div", { staticClass: "control" }, [
               _c("br"),
@@ -506,7 +548,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51521" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62956" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

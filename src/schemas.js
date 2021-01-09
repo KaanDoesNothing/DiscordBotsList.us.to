@@ -32,6 +32,12 @@ const commentSchema = Joi.object({
     likes: Joi.number().required()
 });
 
+const likeSchema = Joi.object({
+    bot_id: user_id,
+    author_id: user_id,
+    date: Joi.number().required
+})
+
 const botDataSchema = Joi.object({
     api_key: Joi.string().required(),
     bot_id: user_id,
@@ -45,5 +51,6 @@ module.exports = {
     botSchema,
     editBotSchema,
     commentSchema,
-    botDataSchema
+    botDataSchema,
+    likeSchema
 }
