@@ -208,16 +208,15 @@ var _default = {
     like: function like() {
       var _this6 = this;
 
-      _axios.default.post("/api/bot/likes/".concat(this.bot_id)).then(function (res) {
-        if (res.data.msg) {
-          (0, _alert.default)(res.data.msg);
-        } else {
-          (0, _alert.default)(res.data.error, "error");
-        } // console.log(res.data);
-
-
-        _this6.fetchLikes();
-      });
+      if (this.hasLiked) {
+        _axios.default.delete("/api/bot/likes/".concat(this.bot_id)).then(function (res) {
+          _this6.fetchLikes();
+        });
+      } else {
+        _axios.default.post("/api/bot/likes/".concat(this.bot_id)).then(function (res) {
+          _this6.fetchLikes();
+        });
+      }
     }
   },
   computed: _objectSpread({
@@ -225,7 +224,7 @@ var _default = {
       // console.log(this.session && this.bot ? this.session._id === this.bot_id : false)
       return this.session && this.bot ? this.session._id === this.bot.owner_id : false;
     },
-    didLike: function didLike() {
+    hasLiked: function hasLiked() {
       var _this7 = this;
 
       return this.likes.filter(function (like) {
@@ -280,7 +279,8 @@ exports.default = _default;
                         { on: { click: _vm.like } },
                         [
                           _c("font-awesome-icon", {
-                            attrs: { icon: "thumbs-up" }
+                            class: { liked: _vm.hasLiked },
+                            attrs: { icon: "thumbs-up", id: "likeButton" }
                           })
                         ],
                         1
@@ -564,7 +564,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55443" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49208" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

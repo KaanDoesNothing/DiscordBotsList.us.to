@@ -37,6 +37,23 @@ app.post("/:id", isLoggedIn, async (req, res) => {
     });
 });
 
+app.delete("/:id", isLoggedIn, async (req, res) => {
+    const bot_id = req.params.id;
+    const author_id = res.locals.session._id;
+
+    const hasAlreadyLiked = await db.get("likes").findOne({bot_id, author_id});
+    
+    if(!hasAlreadyLiked) {
+        return res.json({error: "You haven't liked this bot yet."});
+    }
+
+    db.get("likes").remove({bot_id, author_id}).then(() => {
+        return res.json({msg: "Success."});
+    }).catch(err => {
+        return res.json({error: "An error occurred."});
+    });
+});
+
 // app.post("/:id", isLoggedIn, async (req, res) => {
 //     const {content} = req.body;
 

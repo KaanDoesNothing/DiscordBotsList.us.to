@@ -9,7 +9,7 @@
                         | ({{likeCount}} likes)  
                         template(v-if="isLoggedIn")
                             a(@click="like")
-                                font-awesome-icon(icon="thumbs-up")
+                                font-awesome-icon(icon="thumbs-up" id="likeButton" :class="{'liked': hasLiked}")
                             //- a(@click="unlike" v-if="didLike")
                                 //- font-awesome-icon(icon="thumbs-down")
 
@@ -149,15 +149,15 @@
                 });
             },
             like() {
-                Axios.post(`/api/bot/likes/${this.bot_id}`).then((res) => {
-                    if(res.data.msg) {
-                        alert(res.data.msg);
-                    }else {
-                        alert(res.data.error, "error");
-                    }
-                    // console.log(res.data);
-                    this.fetchLikes();
-                });
+                if(this.hasLiked) {
+                    Axios.delete(`/api/bot/likes/${this.bot_id}`).then((res) => {
+                        this.fetchLikes();
+                    });
+                }else {
+                    Axios.post(`/api/bot/likes/${this.bot_id}`).then((res) => {
+                        this.fetchLikes();
+                    });
+                }
             }
         },
         computed: {
@@ -165,7 +165,7 @@
                 // console.log(this.session && this.bot ? this.session._id === this.bot_id : false)
                 return this.session && this.bot ? this.session._id === this.bot.owner_id : false;
             },
-            didLike() {
+            hasLiked() {
                 return this.likes.filter(like => like.author_id === this.session._id)[0];
             },
             ...mapState(["session", "isLoggedIn"])
@@ -201,5 +201,13 @@
     .editInput {
         text-align: center !important;
         width: 40%;
+    }
+
+    #likeButton {
+        color: #4a4a4a;
+    }
+
+    .liked {
+        color: #3298dc !important;
     }
 </style>

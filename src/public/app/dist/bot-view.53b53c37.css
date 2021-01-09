@@ -25,3 +25,11 @@
   text-align: center !important;
   width: 40%;
 }
+
+#likeButton {
+  color: #4a4a4a;
+}
+
+.liked {
+  color: #3298dc !important;
+}
