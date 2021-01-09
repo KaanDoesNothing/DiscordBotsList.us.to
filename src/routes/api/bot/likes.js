@@ -11,8 +11,13 @@ const {isLoggedIn} = require("../../../modules/middlewares");
 
 app.get("/:id", async (req, res) => {
     const likes = await db.get("likes").find({bot_id: req.params.id}, {sort: {date: -1}});
+    const fixedLikes = likes.map(like => {
+        delete like._id;
 
-    return res.json({likes});
+        return like;
+    });
+
+    return res.json({likes: fixedLikes});
 });
 
 app.post("/:id", isLoggedIn, async (req, res) => {
