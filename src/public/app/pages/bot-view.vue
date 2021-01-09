@@ -6,7 +6,7 @@
 
                 div(class="card-content has-text-centered")
                     label(class="title") {{bot.user.username}}
-                        | ({{likeCount}} likes)  
+                        |  ({{likeCount}} likes)  
                         template(v-if="isLoggedIn")
                             a(@click="like")
                                 font-awesome-icon(icon="thumbs-up" id="likeButton" :class="{'liked': hasLiked}")
