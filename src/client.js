@@ -25,8 +25,6 @@ client.on("ready", async () => {
             }
         }
     });
-    // guild.members.cache.forEach(member => {
-    // });
 });
 
 client.login(config.bot.token);

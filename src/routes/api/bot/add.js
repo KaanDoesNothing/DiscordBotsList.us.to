@@ -18,7 +18,11 @@ app.post("/", async (req, res) => {
     }
 
     try {
-        await client.users.fetch(finalBody.bot_id);
+        let user = await client.users.fetch(finalBody.bot_id);
+
+        if(user.bot === true) {
+            return res.json({error: "Bot_ID is not a bot."})
+        }
     }catch(err) {
         return res.json({error: "Invalid bot id."});
     }
