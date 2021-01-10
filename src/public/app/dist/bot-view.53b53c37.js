@@ -386,9 +386,11 @@ exports.default = _default;
               _c("div", { staticClass: "message-header text-center" }, [
                 _vm._v("Description")
               ]),
-              _c("div", { staticClass: "message-body" }, [
-                _vm._v(_vm._s(_vm.bot.description))
-              ])
+              _c("div", {
+                staticClass: "message-body",
+                attrs: { id: "description" },
+                domProps: { innerHTML: _vm._s(_vm.bot._description) }
+              })
             ])
           ])
         ])

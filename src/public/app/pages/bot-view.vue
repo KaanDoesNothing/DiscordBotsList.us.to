@@ -57,7 +57,7 @@
                     
                     div(class="message has-text-centered")
                         div(class="message-header text-center") Description
-                        div(class="message-body") {{bot.description}}
+                        div(class="message-body" id="description" v-html="bot._description")
             
             br
 
@@ -200,6 +200,10 @@
         text-align: center !important;
     }
 
+    .message-body {
+        color: #000000 !important;
+    }
+
     .editInput {
         text-align: center !important;
         width: 40%;
@@ -225,5 +229,11 @@
 
     .is-grouped {
         justify-content: center !important;
+    }
+
+    #description {
+        p, strong {
+            color: #000000 !important;
+        }
     }
 </style>

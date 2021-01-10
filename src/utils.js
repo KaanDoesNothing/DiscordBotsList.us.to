@@ -1,9 +1,15 @@
+const marked = require("marked");
+const sanitizeHTML = require("sanitize-html");
+
 const client = require("./client");
 const config = require("./config");
 
 module.exports.fixBot = async (bot) => {
     bot.user = client.users.cache.get(bot.bot_id) || await client.users.fetch(bot.bot_id);
     bot.owner = client.users.cache.get(bot.owner_id) || await client.users.fetch(bot.owner_id);
+
+    bot._description = marked(bot.description);
+    bot._description = sanitizeHTML(bot._description);
     
     return bot;
 }
