@@ -238,6 +238,18 @@ exports.default = _default;
               ),
               _vm.isLoggedIn
                 ? [
+                    _vm.session.permissions.moderator
+                      ? [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "navbar-item",
+                              attrs: { to: "/admin" }
+                            },
+                            [_vm._v("Admin")]
+                          )
+                        ]
+                      : _vm._e(),
                     _c(
                       "router-link",
                       { staticClass: "navbar-item", attrs: { to: "/add" } },
@@ -247,7 +259,7 @@ exports.default = _default;
                       "router-link",
                       {
                         staticClass: "navbar-item",
-                        attrs: { to: "/profile/" + _vm.session.id }
+                        attrs: { to: "/dashboard" }
                       },
                       [_vm._v(_vm._s(_vm.session._username))]
                     )
@@ -330,7 +342,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54510" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54538" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

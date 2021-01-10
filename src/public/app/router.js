@@ -22,6 +22,10 @@ const router = new VueRouter({
             component: () => import("./pages/add.vue")
         },
         {
+            path: "/dashboard",
+            component: () => import("./pages/dashboard.vue")
+        },
+        {
             path: "*",
             component: () => import("./pages/404.vue")
         }

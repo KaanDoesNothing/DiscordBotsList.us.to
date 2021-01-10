@@ -13,11 +13,11 @@
                 a(class="navbar-item", @click="switchTheme") {{darkmode ? "Light" : "Dark"}}
                 
                 template(v-if="isLoggedIn")
-                    //- if session.permissions.moderator
-                    //-     a(class="navbar-item", href=`/admin`) Admin
+                    template(v-if="session.permissions.moderator")
+                        router-link(class="navbar-item", to=`/admin`) Admin
 
                     router-link(class="navbar-item", :to="'/add'") Add Bot
-                    router-link(class="navbar-item", :to="'/profile/' + session.id") {{session._username}}
+                    router-link(class="navbar-item", to="/dashboard") {{session._username}}
 
                 template(v-if="!isLoggedIn")
                     a(class="navbar-item", href="/auth/login") Login

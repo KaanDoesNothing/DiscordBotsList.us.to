@@ -23968,6 +23968,11 @@ var router = new _vueRouter.default({
       return require("_bundle_loader")(require.resolve("./pages/add.vue"));
     }
   }, {
+    path: "/dashboard",
+    component: function component() {
+      return require("_bundle_loader")(require.resolve("./pages/dashboard.vue"));
+    }
+  }, {
     path: "*",
     component: function component() {
       return require("_bundle_loader")(require.resolve("./pages/404.vue"));
@@ -23976,7 +23981,7 @@ var router = new _vueRouter.default({
 });
 var _default = router;
 exports.default = _default;
-},{"vue-router":"../../../node_modules/vue-router/dist/vue-router.esm.js","_bundle_loader":"../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/bundle-loader.js","./pages/index.vue":[["pages.66479d92.js","pages/index.vue"],"pages.66479d92.js.map","pages.66479d92.css","pages/index.vue"],"./pages/bot-view.vue":[["bot-view.53b53c37.js","pages/bot-view.vue"],"bot-view.53b53c37.js.map","bot-view.53b53c37.css","pages/bot-view.vue"],"./pages/bot-edit.vue":[["bot-edit.23069ead.js","pages/bot-edit.vue"],"bot-edit.23069ead.js.map","pages/bot-edit.vue"],"./pages/add.vue":[["add.1dffd732.js","pages/add.vue"],"add.1dffd732.js.map","pages/add.vue"],"./pages/404.vue":[["404.cc2eb4dd.js","pages/404.vue"],"pages/404.vue"]}],"../../../node_modules/vuex/dist/vuex.esm.js":[function(require,module,exports) {
+},{"vue-router":"../../../node_modules/vue-router/dist/vue-router.esm.js","_bundle_loader":"../../../../../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/bundle-loader.js","./pages/index.vue":[["pages.66479d92.js","pages/index.vue"],"pages.66479d92.js.map","pages.66479d92.css","pages/index.vue"],"./pages/bot-view.vue":[["bot-view.53b53c37.js","pages/bot-view.vue"],"bot-view.53b53c37.js.map","bot-view.53b53c37.css","pages/bot-view.vue"],"./pages/bot-edit.vue":[["bot-edit.23069ead.js","pages/bot-edit.vue"],"bot-edit.23069ead.js.map","pages/bot-edit.vue"],"./pages/add.vue":[["add.1dffd732.js","pages/add.vue"],"add.1dffd732.js.map","pages/add.vue"],"./pages/dashboard.vue":[["dashboard.b378530a.js","pages/dashboard.vue"],"dashboard.b378530a.css","dashboard.b378530a.js.map","pages/dashboard.vue"],"./pages/404.vue":[["404.cc2eb4dd.js","pages/404.vue"],"404.cc2eb4dd.js.map","pages/404.vue"]}],"../../../node_modules/vuex/dist/vuex.esm.js":[function(require,module,exports) {
 var global = arguments[3];
 "use strict";
 
@@ -29136,7 +29141,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54510" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54538" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
