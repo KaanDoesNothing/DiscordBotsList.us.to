@@ -10,6 +10,14 @@ module.exports.fixBot = async (bot) => {
 
     bot._description = marked(bot.description);
     bot._description = sanitizeHTML(bot._description);
+
+    if(bot._id) {
+        delete bot._id;
+    }
+
+    if(bot.api_key) {
+        delete bot._id;
+    }
     
     return bot;
 }
