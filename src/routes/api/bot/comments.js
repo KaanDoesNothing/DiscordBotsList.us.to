@@ -10,7 +10,6 @@ const {fixUser} = require("../../../utils");
 const {isLoggedIn} = require("../../../modules/middlewares");
 
 app.get("/:id", async (req, res) => {
-    console.time();
     const comments = await db.get("comments").find({bot_id: req.params.id}, {sort: {commented: -1}});
 
     let fixedComments = await Promise.all(comments.map(async comment => {
@@ -19,8 +18,6 @@ app.get("/:id", async (req, res) => {
 
         return comment;
     }));
-
-    console.timeEnd();
 
     return res.json({comments: fixedComments});
 });
