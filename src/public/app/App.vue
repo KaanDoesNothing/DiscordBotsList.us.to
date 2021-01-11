@@ -28,10 +28,9 @@
             let query = new URLSearchParams(window.location.search)
             let code = query.get("code");
 
-            this.$router.push({path: "/"});
-
             if(code) {
-                console.log(code);
+                this.$router.push({path: "/"});
+
                 Axios.post("/auth/callback", {code}).then(res => {
                     if(res.data.msg) {
                         hasToFetch = false;

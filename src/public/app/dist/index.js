@@ -23887,12 +23887,11 @@ var _default = _vue.default.extend({
     this.$store.commit("setDarkMode", enabled);
     var query = new URLSearchParams(window.location.search);
     var code = query.get("code");
-    this.$router.push({
-      path: "/"
-    });
 
     if (code) {
-      console.log(code);
+      this.$router.push({
+        path: "/"
+      });
 
       _axios.default.post("/auth/callback", {
         code: code
