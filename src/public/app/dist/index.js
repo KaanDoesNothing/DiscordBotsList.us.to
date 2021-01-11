@@ -23878,19 +23878,36 @@ var _default = _vue.default.extend({
     Navbar: Navbar
   },
   mounted: function mounted() {
+    var _this = this;
+
+    var hasToFetch = true;
     var darkModeEnabled = localStorage.getItem("darkmode");
     if (darkModeEnabled === null) darkModeEnabled = false;
     var enabled = darkModeEnabled === "true" ? true : false;
     this.$store.commit("setDarkMode", enabled);
-    this.$store.dispatch("fetchSession"); // let query = new URLSearchParams(window.location.search)
-    // let code = query.get("code");
-    // this.$router.push({path: "/"});
-    // if(code) {
-    //     console.log(code);
-    //     Axios.post("/auth/callback", {code}).then(res => {
-    //         // if(this.)
-    //     });
-    // }
+    var query = new URLSearchParams(window.location.search);
+    var code = query.get("code");
+    this.$router.push({
+      path: "/"
+    });
+
+    if (code) {
+      console.log(code);
+
+      _axios.default.post("/auth/callback", {
+        code: code
+      }).then(function (res) {
+        if (res.data.msg) {
+          hasToFetch = false;
+
+          _this.$store.dispatch("fetchSession");
+        }
+      });
+    }
+
+    if (hasToFetch) {
+      this.$store.dispatch("fetchSession");
+    }
   }
 });
 

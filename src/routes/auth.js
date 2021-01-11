@@ -31,21 +31,38 @@ app.post("/callback", async (req, res) => {
 
         const user = await authClient.getUser(key);
 
-        let userData = await db.get("users").findOne({user_id: user._id});
+        req.session.user = user;
+        req.session.key = key;
+        req.session.save();
 
-        if(!userData) {
-            await db.get("users").insert({user_id: user._id, api_key: hat(), added: Date.now()});
-
-            userData = await db.get("users").findOne({user_id: user._id});
-        }
-
-        userData.user = user;
-
-        return res.json({user: userData});
+        return res.json({msg: "Success."});
     }catch(err) {
         return res.json({error: "Invalid code."});
     }
 });
+
+// app.post("/callback", async (req, res) => {
+//     try {
+//         const {code} = req.body;
+//         const key = await authClient.getAccess(code);
+
+//         const user = await authClient.getUser(key);
+
+//         let userData = await db.get("users").findOne({user_id: user._id});
+
+//         if(!userData) {
+//             await db.get("users").insert({user_id: user._id, api_key: hat(), added: Date.now()});
+
+//             userData = await db.get("users").findOne({user_id: user._id});
+//         }
+
+//         userData.user = user;
+
+//         return res.json({user: userData});
+//     }catch(err) {
+//         return res.json({error: "Invalid code."});
+//     }
+// });
 
 app.get("/login", (req, res) => {
     res.redirect(authClient.authCodeLink);
