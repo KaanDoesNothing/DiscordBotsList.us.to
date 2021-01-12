@@ -37,7 +37,6 @@
     "mysql": "^2.18.1",
     "pug": "^3.0.0",
     "sanitize-html": "^2.3.0",
-    "sqlite3": "^5.0.0",
     "sweetalert2": "^10.13.0",
     "vue": "^2.6.12",
     "vue-hot-reload-api": "^2.3.4",
