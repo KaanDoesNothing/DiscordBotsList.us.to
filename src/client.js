@@ -7,6 +7,8 @@ const db = require("./db");
 const client = new Discord.Client();
 
 client.on("ready", async () => {
+    console.log("Ready");
+    
     const guild = client.guilds.cache.get(config.mainGuild);
     const bots = await db.get("bots").find();
 
