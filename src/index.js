@@ -46,6 +46,10 @@ app.use((req, res, next) => {
 app.use("/auth", require("./routes/auth"));
 app.use("/api", require("./routes/api/index"));
 
+app.get("/forceUpdate/:password", async (req, res) => {
+    if(!req.params.password !== config.password) return res.json({error: "...."}); 
+});
+
 app.use("/bot/:id", async (req, res) => {
     const bot = await db.get("bots").findOne({bot_id: req.params.id});
     const finalBot = await fixBot(bot);
