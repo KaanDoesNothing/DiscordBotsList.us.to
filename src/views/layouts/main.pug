@@ -12,6 +12,7 @@ html(lang="en")
         title Discord Bots
 
         link(rel="stylesheet", type="text/css", href="/static/css/darkmode.css" id="darkmode")   
+        //- script(src="", id="indexScript")
     body 
         label(class="text-center")
             div(class="lds-dual-ring")
@@ -47,33 +48,60 @@ html(lang="en")
                 }
             }
 
+
+        div(id="scripts")
+
         if regions
             script.
-                const regions = !{JSON.stringify(regions)};
-                let lastRegion = "";
-                let lastMS = 1000000;
+                let fastestRegion = localStorage.getItem("fastestRegion");
 
-                //- console.log(regions.keys());
+                if(!fastestRegion) {
+                    const regions = !{JSON.stringify(regions)};
+                    let lastRegion = "";
+                    let lastMS = 1000000;
 
-                document.addEventListener("DOMContentLoaded", async () => {
-                    for (let i = 0; i < regions.length; i++) {
-                        let region = regions[i];
+                    //- console.log(regions.keys());
 
-                        let dateNow = Date.now();
+                    document.addEventListener("DOMContentLoaded", async () => {
+                        for (let i = 0; i < regions.length; i++) {
+                            let region = regions[i];
 
-                        await fetch(`${region}/api/bots/all/json`).then(res => res.json());
+                            let dateNow = Date.now();
 
-                        let finalDate = dateNow - Date.now();
+                            await fetch(`${region}/api/bots/all/json`, {mode: "cors"}).then(res => res.json());
 
-                        //- console.log(`${}`);
-                    }
+                            let finalDate = Date.now() - dateNow;
+                            
+                            console.log(`${region} has a response time of ${finalDate}`);
 
-                    console.log("Done.");
-                    
-                });
+                            if(lastMS > finalDate) {
+                                lastMS = finalDate;
+                                lastRegion = region;
+                            }
+
+                            //- console.log(`${}`);
+                        }
+
+                        console.log(`Fastest server: ${lastRegion}`);
+
+                        localStorage.setItem("fastestRegion", lastRegion);
+
+                        setScript(lastRegion);
+                    });
+                }else {
+                    setScript(fastestRegion);
+                }
 
                 function sleep(ms) {
                     return new Promise(resolve => setTimeout(resolve, ms));
+                }
+
+                function setScript(url) {
+                    let script = document.createElement("script");
+                    
+                    script.src = `${url}/static/app/dist/index.js`;
+
+                    document.querySelector("#scripts").appendChild(script);
                 }
         else
             script(src="/static/app/dist/index.js", defer)
