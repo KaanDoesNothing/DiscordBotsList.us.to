@@ -12,9 +12,39 @@ html(lang="en")
         title Discord Bots
 
         link(rel="stylesheet", type="text/css", href="/static/css/darkmode.css" id="darkmode")   
-    body
+    body 
+        label(class="text-center")
+            div(class="lds-dual-ring")
+
         block content
 
         div(id="app")
         
         script(src="/static/app/dist/index.js", defer)
+
+        style.
+            .lds-dual-ring {
+                display: flex;
+                align-items: center;
+                width: 80px;
+                height: 80px;
+            }
+            .lds-dual-ring:after {
+                content: " ";
+                display: block;
+                width: 64px;
+                height: 64px;
+                margin: 8px;
+                border-radius: 50%;
+                border: 6px solid #fff;
+                border-color: #fff transparent #fff transparent;
+                animation: lds-dual-ring 1.2s linear infinite;
+            }
+            @keyframes lds-dual-ring {
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
