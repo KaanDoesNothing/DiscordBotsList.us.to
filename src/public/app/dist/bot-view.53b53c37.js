@@ -143,7 +143,7 @@ var _default = {
   data: function data() {
     return {
       bot: undefined,
-      comments: [],
+      comments: undefined,
       comment_content: "",
       lastError: "",
       stats: {},
@@ -396,101 +396,103 @@ exports.default = _default;
         ])
       : _vm._e(),
     _c("br"),
-    _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "card is-shadow" }, [
-        _vm._m(0),
-        _c(
-          "div",
-          { staticClass: "card-content" },
-          [
-            _c("div", { staticClass: "field" }, [
-              _vm.lastError
-                ? _c("div", { staticClass: "notification is-danger" }, [
-                    _vm._v(_vm._s(_vm.lastError))
-                  ])
-                : _vm._e()
-            ]),
-            _vm.isLoggedIn
-              ? _c("div", { staticClass: "field has-addons" }, [
-                  _c("div", { staticClass: "control is-expanded" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.comment_content,
-                          expression: "comment_content"
-                        }
-                      ],
-                      staticClass: "input",
-                      attrs: {
-                        type: "text",
-                        placeholder: "Message content here."
-                      },
-                      domProps: { value: _vm.comment_content },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.comment_content = $event.target.value
-                        }
-                      }
-                    })
-                  ]),
-                  _c("div", { staticClass: "control" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "button is-info",
-                        on: { click: _vm.postComment }
-                      },
-                      [_vm._v("Comment")]
-                    )
-                  ])
-                ])
-              : _vm._e(),
-            _vm._l(_vm.comments, function(comment) {
-              return _c("div", { staticClass: "media" }, [
-                _c("div", { staticClass: "media-left" }, [
-                  _c("label", { staticClass: "image is-64x64" }, [
-                    _c("img", {
-                      staticClass: "is-rounded",
-                      attrs: { src: comment.author.displayAvatarURL }
-                    })
-                  ])
+    _vm.comments
+      ? _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "card is-shadow" }, [
+            _vm._m(0),
+            _c(
+              "div",
+              { staticClass: "card-content" },
+              [
+                _c("div", { staticClass: "field" }, [
+                  _vm.lastError
+                    ? _c("div", { staticClass: "notification is-danger" }, [
+                        _vm._v(_vm._s(_vm.lastError))
+                      ])
+                    : _vm._e()
                 ]),
-                _c("div", { staticClass: "media-content" }, [
-                  _c(
-                    "div",
-                    { staticClass: "content" },
-                    [
-                      _c(
-                        "router-link",
-                        { attrs: { to: "/profile/" + comment.author_id } },
-                        [
-                          _c("strong", [
-                            _vm._v(_vm._s(comment.author.username) + " ")
-                          ])
-                        ]
-                      ),
-                      _c("label", [
-                        _vm._v(_vm._s(comment.readableCommentDate))
+                _vm.isLoggedIn
+                  ? _c("div", { staticClass: "field has-addons" }, [
+                      _c("div", { staticClass: "control is-expanded" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.comment_content,
+                              expression: "comment_content"
+                            }
+                          ],
+                          staticClass: "input",
+                          attrs: {
+                            type: "text",
+                            placeholder: "Message content here."
+                          },
+                          domProps: { value: _vm.comment_content },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.comment_content = $event.target.value
+                            }
+                          }
+                        })
                       ]),
-                      _c("br"),
-                      _c("label", [_vm._v(_vm._s(comment.content))]),
-                      _c("br")
-                    ],
-                    1
-                  )
-                ])
-              ])
-            })
-          ],
-          2
-        )
-      ])
-    ])
+                      _c("div", { staticClass: "control" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "button is-info",
+                            on: { click: _vm.postComment }
+                          },
+                          [_vm._v("Comment")]
+                        )
+                      ])
+                    ])
+                  : _vm._e(),
+                _vm._l(_vm.comments, function(comment) {
+                  return _c("div", { staticClass: "media" }, [
+                    _c("div", { staticClass: "media-left" }, [
+                      _c("label", { staticClass: "image is-64x64" }, [
+                        _c("img", {
+                          staticClass: "is-rounded",
+                          attrs: { src: comment.author.displayAvatarURL }
+                        })
+                      ])
+                    ]),
+                    _c("div", { staticClass: "media-content" }, [
+                      _c(
+                        "div",
+                        { staticClass: "content" },
+                        [
+                          _c(
+                            "router-link",
+                            { attrs: { to: "/profile/" + comment.author_id } },
+                            [
+                              _c("strong", [
+                                _vm._v(_vm._s(comment.author.username) + " ")
+                              ])
+                            ]
+                          ),
+                          _c("label", [
+                            _vm._v(_vm._s(comment.readableCommentDate))
+                          ]),
+                          _c("br"),
+                          _c("label", [_vm._v(_vm._s(comment.content))]),
+                          _c("br")
+                        ],
+                        1
+                      )
+                    ])
+                  ])
+                })
+              ],
+              2
+            )
+          ])
+        ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = [
@@ -563,7 +565,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63690" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52923" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

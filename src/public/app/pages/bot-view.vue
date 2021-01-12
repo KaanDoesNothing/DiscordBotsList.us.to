@@ -61,7 +61,7 @@
             
             br
 
-            div(class="container")
+            div(class="container" v-if="comments")
                 div(class="card is-shadow")
                     div(class="card-header")
                         label(class="card-header-title") Comments
@@ -99,7 +99,7 @@
         data() {
             return {
                 bot: undefined,
-                comments: [],
+                comments: undefined,
                 comment_content: "",
                 lastError: "",
                 stats: {},
