@@ -32,7 +32,7 @@ client.on("message", async (msg) => {
     if(msg.content === "!!forceUpdate") {
         const clientInfo = await client.fetchApplication();
         
-        if(!msg.author.id !== client.owner.id) return;
+        if(!msg.author.id !== clientInfo.owner.id) return;
 
         exec("npm run update");
     }
