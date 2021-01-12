@@ -43,7 +43,7 @@
                 this.$store.dispatch("fetchSession");
             }
 
-            let loader = document.querySelector(".lds-dual-ring");
+            let loader = document.querySelector("#loading-spinner");
 
             if(loader.style.display !== "none") {
                 loader.style.display = "none";

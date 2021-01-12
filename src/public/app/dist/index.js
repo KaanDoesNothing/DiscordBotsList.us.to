@@ -23908,7 +23908,7 @@ var _default = _vue.default.extend({
       this.$store.dispatch("fetchSession");
     }
 
-    var loader = document.querySelector(".lds-dual-ring");
+    var loader = document.querySelector("#loading-spinner");
 
     if (loader.style.display !== "none") {
       loader.style.display = "none";
@@ -29172,7 +29172,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52923" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61689" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
