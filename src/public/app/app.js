@@ -8,7 +8,6 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import App from "./App.vue";
 
 library.add(faThumbsUp);
-// library.add(faThumbsDown);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 

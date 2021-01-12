@@ -165,6 +165,11 @@ var _default = _vue.default.extend({
       isNavbarOpen: false
     };
   },
+  watch: {
+    $route: function $route(to, from) {
+      this.isNavbarOpen = false;
+    }
+  },
   methods: {
     switchTheme: function switchTheme() {
       var darkmode = this.$store.state.darkmode;
@@ -342,7 +347,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50832" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63525" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

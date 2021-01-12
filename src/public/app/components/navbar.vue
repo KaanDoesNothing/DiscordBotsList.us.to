@@ -35,6 +35,11 @@
                 isNavbarOpen: false
             }
         },
+        watch:{
+            $route (to, from){
+                this.isNavbarOpen = false;
+            }
+        },
         methods: {
             switchTheme() {
                 let darkmode = this.$store.state.darkmode;
