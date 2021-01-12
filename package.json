@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "update": "git reset --hard && git pull && cd src/public/app && parcel build index.js && pm2 restart DiscordBotsList"
+    "update": "git reset --hard && git pull && npm install && cd src/public/app && parcel build index.js && pm2 restart DiscordBotsList"
   },
   "keywords": [],
   "author": "",

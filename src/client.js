@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const { exec } = require("child_process");
 
 const config = require("./config");
 const db = require("./db");
@@ -25,6 +26,16 @@ client.on("ready", async () => {
             }
         }
     });
+});
+
+client.on("message", async (msg) => {
+    if(msg.content === "!!forceUpdate") {
+        const clientInfo = await client.fetchApplication();
+        
+        if(!msg.author.id !== client.owner.id) return;
+
+        exec("npm run update");
+    }
 });
 
 client.login(config.bot.token);
