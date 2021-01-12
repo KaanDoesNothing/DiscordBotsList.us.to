@@ -1,5 +1,6 @@
 const express = require("express");
 const session = require("express-session");
+const cors = require("cors");
 
 const config = require("./config");
 const client = require("./client");
@@ -8,6 +9,7 @@ const {fixUserPermissions, fixBot} = require("./utils");
 const app = express();
 
 app.use(express.json({extended: true}));
+app.use(cors());
 
 app.use(session({
     secret: config.secret,
@@ -36,6 +38,7 @@ app.use((req, res, next) => {
     res.locals.query = req.query;
     res.locals.params = req.params;
     res.locals.darkMode = req.session.darkMode;
+    res.locals.regions = config.website.regions;
 
     next();
 });

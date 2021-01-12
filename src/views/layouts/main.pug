@@ -46,5 +46,34 @@ html(lang="en")
                     transform: rotate(360deg);
                 }
             }
-            
-        script(src="/static/app/dist/index.js", defer)
+
+        if regions
+            script.
+                const regions = !{JSON.stringify(regions)};
+                let lastRegion = "";
+                let lastMS = 1000000;
+
+                //- console.log(regions.keys());
+
+                document.addEventListener("DOMContentLoaded", async () => {
+                    for (let i = 0; i < regions.length; i++) {
+                        let region = regions[i];
+
+                        let dateNow = Date.now();
+
+                        await fetch(`${region}/api/bots/all/json`).then(res => res.json());
+
+                        let finalDate = dateNow - Date.now();
+
+                        //- console.log(`${}`);
+                    }
+
+                    console.log("Done.");
+                    
+                });
+
+                function sleep(ms) {
+                    return new Promise(resolve => setTimeout(resolve, ms));
+                }
+        else
+            script(src="/static/app/dist/index.js", defer)
