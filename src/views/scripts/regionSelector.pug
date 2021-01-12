@@ -1,0 +1,52 @@
+if regions
+    script.
+        let fastestRegion = localStorage.getItem("fastestRegion");
+
+        if(!fastestRegion) {
+            const regions = !{JSON.stringify(regions)};
+            let lastRegion = "";
+            let lastMS = 1000000;
+
+            //- console.log(regions.keys());
+
+            document.addEventListener("DOMContentLoaded", async () => {
+                for (let i = 0; i < regions.length; i++) {
+                    let region = regions[i];
+
+                    let dateNow = Date.now();
+
+                    await fetch(`${region}/api/bots/all/json`, {mode: "cors"}).then(res => res.json());
+
+                    let finalDate = Date.now() - dateNow;
+                    
+                    console.log(`${region} has a response time of ${finalDate}`);
+
+                    if(lastMS > finalDate) {
+                        lastMS = finalDate;
+                        lastRegion = region;
+                    }
+                }
+
+                console.log(`Fastest server: ${lastRegion}`);
+
+                localStorage.setItem("fastestRegion", lastRegion);
+
+                setScript(lastRegion);
+            });
+        }else {
+            setScript(fastestRegion);
+        }
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        function setScript(url) {
+            let script = document.createElement("script");
+            
+            script.src = `${url}/static/app/dist/index.js`;
+
+            document.querySelector("#scripts").appendChild(script);
+        }
+else
+    script(src="/static/app/dist/index.js", defer)
