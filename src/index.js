@@ -1,6 +1,7 @@
 const express = require("express");
 const session = require("express-session");
 const cors = require("cors");
+const helmet = require("helmet");
 
 const config = require("./config");
 const client = require("./client");
@@ -8,6 +9,7 @@ const db = require("./db");
 const {fixUserPermissions, fixBot} = require("./utils");
 const app = express();
 
+// app.use(helmet());
 app.use(cors());
 app.use(express.json({extended: true}));
 
