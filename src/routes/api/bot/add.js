@@ -10,7 +10,7 @@ const {sendBotAdded} = require("../../../modules/botActions");
 app.post("/", async (req, res) => {
     let body = req.body;
 
-    let finalBody = {...body, owner_id: res.locals.session._id, likes: 0, verified: false, added: Date.now()};
+    let finalBody = {...body, owner_id: res.locals.session._id, verified: false, added: Date.now()};
 
     const isValidated = botSchema.validate(finalBody);
 
