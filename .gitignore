@@ -5,3 +5,4 @@ src/public/.bundle/
 src/config.js
 src/.views/
 src/public/app/dist/
+src/api/

@@ -31,11 +31,19 @@ app.post("/callback", async (req, res) => {
 
         const user = await authClient.getUser(key);
 
+        let userData = await db.get("users").findOne({user_id: user._id});
+
+        if(!userData) {
+            await db.get("users").insert({user_id: user._id, api_key: hat(), added: Date.now()});
+
+            userData = await db.get("users").findOne({user_id: user._id});
+        }
+
         req.session.user = user;
         req.session.key = key;
         req.session.save();
 
-        return res.json({msg: "Success."});
+        return res.json({msg: "Success.", api_key: userData.api_key});
     }catch(err) {
         return res.json({error: "Invalid code."});
     }

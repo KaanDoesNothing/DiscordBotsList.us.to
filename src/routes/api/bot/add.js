@@ -5,6 +5,7 @@ const app = express.Router();
 const client = require("../../../client");
 const db = require("../../../db");
 const {botSchema} = require("../../../schemas");
+const {sendBotAdded} = require("../../../modules/botActions");
 
 app.post("/", async (req, res) => {
     let body = req.body;
