@@ -20,7 +20,7 @@ app.post("/", async (req, res) => {
     try {
         let user = await client.users.fetch(finalBody.bot_id);
 
-        if(user.bot === true) {
+        if(user.bot !== true) {
             return res.json({error: "Bot_ID is not a bot."})
         }
     }catch(err) {
