@@ -1,33 +1,38 @@
 import VueRouter from "vue-router";
 
-// import indexPage from "./pages/index";
+import indexPage from "./pages/index.vue";
+import botViewPage from "./pages/bot-view.vue";
+import botEditPage from "./pages/bot-edit.vue";
+import addPage from "./pages/add.vue";
+import dashboardPage from "./pages/dashboard.vue";
+import notFoundPage from "./pages/404.vue";
 
 const router = new VueRouter({
     mode: "history",
     routes: [
         {
             path: "/",
-            component: () => import("./pages/index.vue")
+            component: () => indexPage
         },
         {
             path: "/bot/:id",
-            component: () => import("./pages/bot-view.vue")
+            component: () => botViewPage
         },
         {
             path: "/bot/:id/edit",
-            component: () => import("./pages/bot-edit.vue")
+            component: () => botEditPage
         },
         {
             path: "/add",
-            component: () => import("./pages/add.vue")
+            component: () => addPage
         },
         {
             path: "/dashboard",
-            component: () => import("./pages/dashboard.vue")
+            component: () => dashboardPage
         },
         {
             path: "*",
-            component: () => import("./pages/404.vue")
+            component: () => notFoundPage
         }
     ]
 })
