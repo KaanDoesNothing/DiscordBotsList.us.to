@@ -1,14 +1,19 @@
 <template lang="pug">
     div
         Navbar
-        router-view
+
+        router-view(v-if="!isLoading")
+
+        div(class="align-center" v-if="isLoading")
+            div(class="lds-dual-ring")
 </template>
 
 <script>
+    import {mapState} from "vuex";
     import Vue from "vue";
     import Axios from "axios";
 
-    let Navbar = () => import("./components/navbar.vue");
+    import Navbar from "./components/navbar.vue";
 
     export default Vue.extend({
         components: {
@@ -48,7 +53,8 @@
             if(loader.style.display !== "none") {
                 loader.style.display = "none";
             }
-        }
+        },
+        computed: mapState(["isLoading"])
     });
 </script>
 

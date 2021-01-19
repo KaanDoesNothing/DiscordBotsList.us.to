@@ -13,7 +13,7 @@
                         label {{bot.short_description}}
                     
                     footer(class="card-footer")
-                        router-link(class="card-footer-item" v-bind:to="'/bot/' + bot.bot_id") View
+                        a(class="card-footer-item" @click="navigateBot(bot.bot_id)") View
                         a(class="card-footer-item" :href="bot.invite_url") Invite
 
 </template>
@@ -35,6 +35,10 @@
                 Axios.get("/api/bots/all/json").then(res => {
                     this.bots = res.data.bots;
                 })
+            },
+            navigateBot(id) {
+                this.$store.commit("setLoading", true);
+                this.$router.push({path: `/bot/${id}`});
             }
         }
     }

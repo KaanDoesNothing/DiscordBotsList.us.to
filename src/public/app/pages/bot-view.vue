@@ -115,6 +115,8 @@
             this.fetchComments();
             this.fetchStats();
             this.fetchLikes();
+
+            this.$store.commit("setLoading", false);
         },
         methods: {
             fetchBot() {

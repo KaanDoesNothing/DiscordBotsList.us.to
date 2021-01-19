@@ -1,6 +1,79 @@
 .text-center {
   text-align: center !important;
 }
+.botColumns {
+  margin: 10%;
+}
+
+.botColumns .field {
+  width: 20%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  margin-left: 40%;
+  margin-right: 40%;
+}
+#mainBotView {
+  padding: 5%;
+}
+
+#avatar {
+  margin: 5%;
+  margin-bottom: 1%;
+  border-radius: 50%;
+}
+
+@media (min-width: 768px) {
+  #mainBotView {
+    width: 800px;
+    margin-top: 1%;
+    padding: 0%;
+  }
+}
+.message {
+  min-height: 250px;
+}
+
+.message-header {
+  text-align: center !important;
+}
+
+.message-body {
+  color: #000000 !important;
+}
+
+.editInput {
+  text-align: center !important;
+  width: 40%;
+}
+
+#likeButton {
+  color: #4a4a4a;
+}
+
+.liked {
+  color: #3298dc !important;
+}
+
+.tag-first {
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}
+
+.tag-second {
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+}
+
+.is-grouped {
+  justify-content: center !important;
+}
+
+#description p, #description strong {
+  color: #000000 !important;
+}
+p[data-v-5f023c], a[data-v-5f023c] {
+  color: #FFFFFF !important;
+}
 @charset "UTF-8";
 /*! bulma.io v0.9.1 | MIT License | github.com/jgthms/bulma */
 /* Bulma Utilities */

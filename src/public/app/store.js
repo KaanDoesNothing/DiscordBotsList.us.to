@@ -8,7 +8,8 @@ const store = new Vuex.Store({
     state: {
       session: undefined,
       isLoggedIn: false,
-      darkmode: false
+      darkmode: false,
+      isLoading: false
     },
     mutations: {
       setSession(ctx, data) {
@@ -21,6 +22,9 @@ const store = new Vuex.Store({
         ctx.darkmode = val;
 
         localStorage.setItem("darkmode", val);
+      },
+      setLoading(ctx, val) {
+        this.isLoading = val;
       }
     },
     actions: {
