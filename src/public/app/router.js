@@ -12,27 +12,27 @@ const router = new VueRouter({
     routes: [
         {
             path: "/",
-            component: () => indexPage
+            component: indexPage
         },
         {
             path: "/bot/:id",
-            component: () => botViewPage
+            component: botViewPage
         },
         {
             path: "/bot/:id/edit",
-            component: () => botEditPage
+            component: botEditPage
         },
         {
             path: "/add",
-            component: () => addPage
+            component: addPage
         },
         {
             path: "/dashboard",
-            component: () => dashboardPage
+            component: dashboardPage
         },
         {
             path: "*",
-            component: () => notFoundPage
+            component: notFoundPage
         }
     ]
 })
